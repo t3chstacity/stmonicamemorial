@@ -71,7 +71,7 @@
         <div class="max-w-7xl mx-auto px-2 md:px-6 flex justify-between items-center flex-wrap gap-2 text-center md:text-left">
             <div class="flex items-center justify-center md:justify-start gap-2 w-full md:w-auto mx-auto md:mx-0">
                 <span class="bg-white text-academicRed-600 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full">Now Open</span>
-                <span>🎓 Admission for Daycare, Playgroup, PP1, PP2 & Grades 1-7 is ONGOING!</span>
+                <span> Admission for Daycare, Playgroup, PP1, PP2 & Grades 1-7 is ONGOING!</span>
             </div>
             <div class="flex items-center justify-center gap-4 text-xs mx-auto md:mx-0">
                 <a href="tel:+254712674922" class="hover:underline flex items-center gap-1"><i class="fas fa-phone-alt"></i> +254 712 674 922</a>
@@ -101,10 +101,25 @@
                 <!-- Desktop Nav Navigation Links -->
                 <nav class="hidden md:flex items-center gap-8 font-medium text-slate-700 text-sm">
                     <a href="#home" class="hover:text-academicRed-600 transition-colors py-1">Home</a>
-                    <a href="#about" class="hover:text-academicRed-600 transition-colors py-1">About Us</a>
+                    
+                    <!-- About Us Dropdown -->
+                    <div class="relative group py-1">
+                        <a href="#about" class="hover:text-academicRed-600 transition-colors flex items-center gap-1">
+                            About<i class="fas fa-chevron-down text-[10px]"></i>
+                        </a>
+                        <!-- Dropdown Menu Box -->
+                        <div class="absolute left-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                            <a href="#about" class="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">About Us</a>
+                            <a href="#why-us" class="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Core Values</a>
+                            <a href="news.html" class="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">News</a>
+                            <a href="vision.html" class="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Vision & Mission</a>
+                            <a href="policies.html" class="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Policies</a>
+                        </div>
+                    </div>
+
                     <a href="#programs" class="hover:text-academicRed-600 transition-colors py-1">Academics</a>
                     <a href="#reviews" class="hover:text-academicRed-600 transition-colors py-1">Parent Reviews</a>
-                    <a href="#why-us" class="hover:text-academicRed-600 transition-colors py-1">Why Choose Us</a>
+                    <a href="news.html" class="hover:text-academicRed-600 transition-colors py-1">News</a>
                     <a href="#contact" class="hover:text-academicRed-600 transition-colors py-1">Location & Contact</a>
                 </nav>
 
@@ -125,7 +140,20 @@
         <!-- Mobile Menu Nav Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 shadow-lg">
             <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Home</a>
-            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">About Us</a>
+            
+            <!-- Mobile About Us Section with Sub-links -->
+            <div class="space-y-1">
+                <div class="px-3 py-2 rounded-md font-medium text-slate-700 flex items-center justify-between">
+                    <a href="#about" onclick="toggleMobileMenu()" class="hover:text-academicRed-600">About</a>
+                </div>
+                <div class="pl-4 space-y-1 border-l-2 border-slate-100 ml-3">
+                    <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">About Us</a>
+                    <a href="#why-us" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Core Values</a>
+                    <a href="mission.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Mission and Vision</a>
+                    <a href="policies.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Policies</a>
+                </div>
+            </div>
+
             <a href="#programs" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Academics & Programs</a>
             <a href="#reviews" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Parent Reviews</a>
             <a href="#why-us" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Why Choose Us</a>
@@ -141,98 +169,71 @@
         </div>
     </header>
 
-    <main class="flex-grow">
-        <!-- Hero Section -->
-        <section id="home" class="relative gradient-brand text-white overflow-hidden py-16 lg:py-24">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-academicRed-600/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- Main Responsive Layout Wrapper -->
+    <!-- On mobile (default): Flex/stacked column. On large screens (lg+): 12-column grid layout where main takes 9 cols and sidebar takes 3 cols -->
+    <div class="flex-grow max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        
+        <!-- Left/Center Main Website Content (Spans 9 columns on lg screens, full width on mobile) -->
+        <main class="lg:col-span-9 w-full space-y-12">
+            
+            <!-- Hero Section -->
+            <section id="home" class="relative gradient-brand text-white overflow-hidden py-16 lg:py-24 rounded-3xl shadow-lg">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-academicRed-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid lg:grid-cols-12 gap-12 items-center">
-                    
-                    <div class="lg:col-span-7 text-center lg:text-left space-y-6">
-                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-xs sm:text-sm font-semibold text-red-200">
-                            <span class="w-2 h-2 rounded-full bg-academicRed-500"></span>
-                            Admissions Open for Next Academic Year
-                        </div>
-                        
-                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                            Nurturing Young Minds <span class="text-academicRed-500 underline decoration-white/30">Beyond Learning</span>
-                        </h1>
-                        
-                        <p class="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                            Welcome to <strong class="text-white">St. Monica Memorial School</strong> in Mwihoko. We provide holistic Competency-Based Curriculum (CBC) education, high safety standards, and personalized care from Daycare through to Grade 3.
-                        </p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-12 text-center max-w-4xl mx-auto space-y-9">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-xs sm:text-sm font-semibold text-red-200">
+                    Admissions Open for Next Academic Year
+                </div>
+                
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Nurturing Young Minds <span class="text-academicRed-500 underline decoration-white/30">Beyond Learning</span>
+                </h1>
+                
+                <p class="text-slate-200 text-base sm:text-lg max-w-3xl mx-auto font-normal leading-relaxed">
+                    Welcome to <strong class="text-white">St. Monica Memorial School</strong> in Mwihoko. We provide holistic Competency-Based Curriculum (CBC) education, high safety standards, and personalized care from Daycare through to Grade 3.
+                </p>
 
-                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                            <button onclick="openAdmissionModal()" class="w-full sm:w-auto gradient-red hover:bg-academicRed-700 text-white font-bold text-base px-8 py-4 rounded-xl shadow-xl shadow-red-900/40 transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
-                                <span>Book Admission Slot</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                            <a href="#programs" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-6 py-4 rounded-xl border border-white/20 backdrop-blur-sm transition-all text-center flex items-center justify-center gap-2">
-                                <i class="fas fa-graduation-cap"></i> View Programs
-                            </a>
-                        </div>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <button onclick="openAdmissionModal()" class="w-full sm:w-auto gradient-red hover:bg-academicRed-700 text-white font-bold text-base px-8 py-4 rounded-xl shadow-xl shadow-red-900/40 transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
+                        <span>Book Admission Slot</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a href="#programs" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-6 py-4 rounded-xl border border-white/20 backdrop-blur-sm transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-graduation-cap"></i> View Programs
+                    </a>
+                </div>
 
-                        <div class="pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center lg:text-left">
-                            <div>
-                                <div class="text-2xl font-bold text-white">100%</div>
-                                <div class="text-xs text-slate-300">CBC Curriculum</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-white">1:12</div>
-                                <div class="text-xs text-slate-300">Teacher-Pupil Ratio</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-white">Safe</div>
-                                <div class="text-xs text-slate-300">Nurturing Academy</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-white">Full</div>
-                                <div class="text-xs text-slate-300">Co-Curricular Support</div>
-                            </div>
-                        </div>
+                <div class="pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center max-w-3xl mx-auto">
+                    <div>
+                        <div class="text-2xl font-bold text-white">100%</div>
+                        <div class="text-xs text-slate-300">CBC Curriculum</div>
                     </div>
-
-                    <div class="lg:col-span-5 flex justify-center">
-                        <div class="relative w-full max-w-md">
-                            <div class="absolute inset-0 bg-gradient-to-r from-academicRed-600 to-navy-900 rounded-3xl transform rotate-3 scale-105 opacity-30 blur-lg"></div>
-                            
-                            <div class="relative bg-white text-navy-900 rounded-3xl p-8 shadow-2xl border border-slate-100 flex flex-col items-center text-center">
-                                <div class="w-32 h-36 bg-slate-50 p-2 relative flex flex-col justify-between shadow-md mb-4">
-                                   <img src="images/stmonica_logo.jpg" alt="Logo Crest" class="w-full h-full object-contain">
-                                </div>
-
-                                <h2 class="font-serif text-2xl font-extrabold text-navy-900">St. Monica Memorial School</h2>
-                                <p class="text-xs text-slate-500 font-semibold uppercase tracking-widest mb-4">Mwihoko • 160 Stage</p>
-
-                                <div class="w-full bg-slate-50 rounded-2xl p-4 border border-slate-200 text-left space-y-2 mb-6">
-                                    <div class="flex items-center text-xs font-semibold text-slate-700 gap-2">
-                                        <i class="fas fa-check-circle text-academicRed-600"></i> Daycare, Playgroup, PP1 & PP2
-                                    </div>
-                                    <div class="flex items-center text-xs font-semibold text-slate-700 gap-2">
-                                        <i class="fas fa-check-circle text-academicRed-600"></i> Primary Grades 1, 2 and 3
-                                    </div>
-                                    <div class="flex items-center text-xs font-semibold text-slate-700 gap-2">
-                                        <i class="fas fa-check-circle text-academicRed-600"></i> Balanced Nutrition & Transport Available
-                                    </div>
-                                </div>
-
-                                <button onclick="openAdmissionModal()" class="w-full gradient-red text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-red-500/30 transition-all flex items-center justify-center gap-2">
-                                    <i class="fas fa-calendar-check"></i> Book Admission For Next Term
-                                </button>
-                            </div>
-                        </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">1:12</div>
+                        <div class="text-xs text-slate-300">Teacher-Pupil Ratio</div>
                     </div>
-
+                    <div>
+                        <div class="text-2xl font-bold text-white">Safe</div>
+                        <div class="text-xs text-slate-300">Nurturing Academy</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">Full</div>
+                        <div class="text-xs text-slate-300">Co-Curricular Support</div>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- About Institution Section -->
-        <section id="about" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        </div>
+    </div>
+</section>
+
+            <!-- About Institution Section -->
+            <section id="about" class="py-16 bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="space-y-6">
                         <div class="inline-block bg-red-50 text-academicRed-600 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
@@ -298,12 +299,10 @@
                     </div>
 
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Academic Programs Section -->
-        <section id="programs" class="py-20 bg-slate-50 border-t border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Academic Programs Section -->
+            <section id="programs" class="py-16 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm">
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <div class="inline-block bg-red-100 text-academicRed-600 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">
                         Admissions Open
@@ -406,72 +405,70 @@
                     </div>
 
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Interactive Fee & Tour Inquiry Calculator Tool -->
-        <section class="py-16 bg-navy-900 text-white relative overflow-hidden">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="bg-white/5 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl">
-                    <div class="text-center max-w-2xl mx-auto mb-8">
-                        <span class="bg-academicRed-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Instant Estimator</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Plan Your Child’s Enrollment</h2>
-                        <p class="text-slate-300 text-xs sm:text-sm mt-1">Select your program interest to calculate key details and schedule a quick academy visit.</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-6 items-center">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-2">1. Select Grade / Level</label>
-                            <select id="calc-grade" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
-                                <option value="daycare">Daycare (Full Day / Half Day)</option>
-                                <option value="playgroup">Playgroup</option>
-                                <option value="pp1">PP1 (Pre-Primary 1)</option>
-                                <option value="pp2">PP2 (Pre-Primary 2)</option>
-                                <option value="grade1">Grade 1</option>
-                                <option value="grade2">Grade 2</option>
-                                <option value="grade3">Grade 3</option>
-                            </select>
+            <!-- Interactive Fee & Tour Inquiry Calculator Tool -->
+            <section class="py-16 bg-navy-900 text-white relative overflow-hidden rounded-3xl p-6 sm:p-10 shadow-xl">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="bg-white/5 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl">
+                        <div class="text-center max-w-2xl mx-auto mb-8">
+                            <span class="bg-academicRed-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Instant Estimator</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Plan Your Child’s Enrollment</h2>
+                            <p class="text-slate-300 text-xs sm:text-sm mt-1">Select your program interest to calculate key details and schedule a quick academy visit.</p>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-2">2. Need Transport?</label>
-                            <select id="calc-transport" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
-                                <option value="none">No Transport Required</option>
-                                <option value="mwihoko">Mwihoko Area</option>
-                                <option value="wendani">Kahawa Wendani / 160 Stage Area</option>
-                                <option value="other">Nearby Environs</option>
-                            </select>
-                        </div>
+                        <div class="grid md:grid-cols-3 gap-6 items-center">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">1. Select Grade / Level</label>
+                                <select id="calc-grade" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
+                                    <option value="daycare">Daycare (Full Day / Half Day)</option>
+                                    <option value="playgroup">Playgroup</option>
+                                    <option value="pp1">PP1 (Pre-Primary 1)</option>
+                                    <option value="pp2">PP2 (Pre-Primary 2)</option>
+                                    <option value="grade1">Grade 1</option>
+                                    <option value="grade2">Grade 2</option>
+                                    <option value="grade3">Grade 3</option>
+                                </select>
+                            </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-2">3. Preferred Session</label>
-                            <select id="calc-term" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
-                                <option value="term1">Upcoming Term 1</option>
-                                <option value="term2">Upcoming Term 2</option>
-                                <option value="term3">Upcoming Term 3</option>
-                                <option value="midterm">Immediate Entry</option>
-                            </select>
-                        </div>
-                    </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">2. Need Transport?</label>
+                                <select id="calc-transport" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
+                                    <option value="none">No Transport Required</option>
+                                    <option value="mwihoko">Mwihoko Area</option>
+                                    <option value="wendani">Kahawa Wendani / 160 Stage Area</option>
+                                    <option value="other">Nearby Environs</option>
+                                </select>
+                            </div>
 
-                    <div id="calc-result" class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div class="text-center sm:text-left">
-                            <span class="text-xs text-slate-400">Estimated Admission Availability:</span>
-                            <div class="text-lg font-bold text-green-400 flex items-center gap-2 justify-center sm:justify-start">
-                                <i class="fas fa-check-circle"></i> Slots Available For Selected Program
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">3. Preferred Session</label>
+                                <select id="calc-term" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
+                                    <option value="term1">Upcoming Term 1</option>
+                                    <option value="term2">Upcoming Term 2</option>
+                                    <option value="term3">Upcoming Term 3</option>
+                                    <option value="midterm">Immediate Entry</option>
+                                </select>
                             </div>
                         </div>
-                        <button onclick="sendQuickWhatsAppInquiry()" class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-xl shadow transition-all flex items-center justify-center gap-2 text-sm">
-                            <i class="fab fa-whatsapp text-lg"></i> Request Fee Structure on WhatsApp
-                        </button>
+
+                        <div id="calc-result" class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="text-center sm:text-left">
+                                <span class="text-xs text-slate-400">Estimated Admission Availability:</span>
+                                <div class="text-lg font-bold text-green-400 flex items-center gap-2 justify-center sm:justify-start">
+                                    <i class="fas fa-check-circle"></i> Slots Available For Selected Program
+                                </div>
+                            </div>
+                            <button onclick="sendQuickWhatsAppInquiry()" class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-xl shadow transition-all flex items-center justify-center gap-2 text-sm">
+                                <i class="fab fa-whatsapp text-lg"></i> Request Fee Structure on WhatsApp
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Parent Reviews & Testimonials Section -->
-        <section id="reviews" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Parent Reviews & Testimonials Section -->
+            <section id="reviews" class="py-16 bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <div class="inline-block bg-red-100 text-academicRed-600 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">
                         Trusted By Parents
@@ -545,12 +542,10 @@
                         Visit Facebook Page
                     </a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Why Choose Us -->
-        <section id="why-us" class="py-20 bg-slate-50 border-t border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Why Choose Us -->
+            <section id="why-us" class="py-16 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900">Why Choose St. Monica Memorial?</h2>
                     <p class="text-slate-600 mt-2">Key pillars that make our institution a trusted choice for parents in Mwihoko & Wendani.</p>
@@ -617,12 +612,10 @@
                         </p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Contact & Location Section -->
-        <section id="contact" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Contact & Location Section -->
+            <section id="contact" class="py-16 bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200">
                 <div class="grid lg:grid-cols-12 gap-12">
                     
                     <div class="lg:col-span-5 space-y-6">
@@ -670,8 +663,9 @@
                                     <i class="fab fa-facebook-f"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-navy-900 text-sm">Official Facebook Page</h4>
-                                    <a href="https://www.facebook.com/stmonicaschoolwendani/" target="_blank" class="text-xs font-bold text-blue-600 hover:underline block mt-0.5">facebook.com/stmonicaschoolwendani</a>
+                                    <a href="https://www.facebook.com/stmonicaschoolwendani/" target="_blank" class="text-xs font-bold text-blue-600 hover:underline block mt-0.5">
+                                        <h4 class="font-bold text-navy-900 text-sm">Official Facebook Page</h4>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -707,9 +701,51 @@
                     </div>
 
                 </div>
+            </section>
+        </main>
+
+        <!-- Right Side Advertising Web Banners Sidebar (Spans 3 columns on large screens, stacks below main content on mobile) -->
+        <aside class="lg:col-span-3 w-full space-y-6 lg:sticky lg:top-28">
+            
+            <!-- Sidebar Header -->
+            <div class="bg-navy-900 text-white p-4 rounded-2xl shadow-md flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <h3 class="font-bold text-xs uppercase tracking-wider">Featured Adverts</h3>
+                </div>
+               
             </div>
-        </section>
-    </main>
+
+            <!-- Main Featured Web Banner (stmonica_banner.jpg) -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-2 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                
+                <div class="rounded-xl overflow-hidden cursor-pointer" onclick="openAdmissionModal()">
+                    <img src="images/stmonica_banner.jpg" alt="St. Monica Admission Banner" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-300">
+                </div>
+
+                <div class="p-2 pt-3">
+                    <button onclick="openAdmissionModal()" class="w-full gradient-red text-white text-xs font-bold py-2.5 rounded-xl shadow hover:opacity-95 transition-opacity flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane text-xs"></i> Apply / Inquire Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Banner Ad 2: Local Partner / Service Provider -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                <div class="rounded-xl overflow-hidden mb-3 bg-slate-100 border border-slate-200 p-4 text-navy-900 text-center">
+                    <div class="w-10 h-10 bg-academicRed-600 text-white rounded-full flex items-center justify-center mx-auto mb-2 text-sm">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h4 class="font-bold text-sm">School Uniforms & Books</h4>
+                    <p class="text-[11px] text-slate-600 mt-1">Get approved CBC textbooks, stationery, and uniforms nearby.</p>
+                </div>
+                <a href="https://wa.me/254712674922?text=Hello,%20I%20would%20like%20to%20inquire%20about%20school%20uniforms%20and%20books." target="_blank" class="block w-full bg-navy-900 hover:bg-navy-950 text-white text-center text-xs font-bold py-2 rounded-xl transition-colors">
+                    Enquire
+                </a>
+            </div>
+
+        </aside>
+
+    </div>
 
     <!-- Direct Online Admission & Booking Modal with Formspree Integration -->
     <div id="admission-modal" class="fixed inset-0 z-50 hidden bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
@@ -816,9 +852,6 @@
                 
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-academicRed-600 text-white font-bold rounded-xl flex items-center justify-center">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
                         <span class="font-serif font-bold text-lg">St. Monica Memorial</span>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed">
@@ -854,7 +887,8 @@
                         <li><a href="#home" class="hover:text-academicRed-500 transition-colors">Home</a></li>
                         <li><a href="#about" class="hover:text-academicRed-500 transition-colors">About St. Monica</a></li>
                         <li><a href="#reviews" class="hover:text-academicRed-500 transition-colors">Parent Testimonials</a></li>
-                        <li><a href="#why-us" class="hover:text-academicRed-500 transition-colors">Why Choose Us</a></li>
+                        <li><a href="news.html" class="hover:text-academicRed-500 transition-colors">News</a></li>
+                        <li><a href="vision.html" class="hover:text-academicRed-500 transition-colors">Our Vision and Mission</a></li>
                         <li><a href="#contact" class="hover:text-academicRed-500 transition-colors">School Directions</a></li>
                     </ul>
                 </div>
@@ -864,7 +898,7 @@
                     <ul class="space-y-3 text-xs text-slate-400">
                         <li class="flex items-start gap-2">
                             <i class="fas fa-map-marker-alt text-academicRed-500 mt-0.5"></i>
-                            <span>160 Stage, Mwihoko (Kahawa Wendani Environs)</span>
+                            <span>160 Stage, Mwihoko</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fas fa-phone-alt text-academicRed-500"></i>
@@ -880,7 +914,7 @@
             </div>
 
             <div class="mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p>&copy; <span id="year"></span> St. Monica Memorial School. All Rights Reserved. Website by Techstacity</p>
+                <p>&copy; <span id="year"></span> St. Monica Memorial School. All Rights Reserved. <a href="https://techstacity.vercel.app" target="_blank"> Website by Techstacity</a></p>
                 <p class="italic">Beyond Learning</p>
             </div>
         </div>
