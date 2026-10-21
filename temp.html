@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Monica Memorial School | Beyond Learning | Mwihoko - Wendani</title>
+    <link rel="icon" href="images/stmonica_logo.jpg" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#142752',
+                            900: '#0F2962',
+                            950: '#0A1C44',
+                        },
+                        academicRed: {
+                            500: '#EF233C',
+                            600: '#E31B23',
+                            700: '#C1121F',
+                        },
+                        softGray: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-brand {
+            background: linear-gradient(135deg, #0F2962 0%, #1B365D 50%, #0A1C44 100%);
+        }
+        .gradient-red {
+            background: linear-gradient(135deg, #E31B23 0%, #C1121F 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(227, 27, 35, 0.4);
+        }
+        .shield-clip {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0F2962;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-academicRed-600 selection:text-white flex flex-col min-h-screen custom-scrollbar">
+
+    <!-- Top Announcement Bar -->
+    <div id="top-announcement" class="bg-academicRed-600 text-white text-xs md:text-sm font-semibold py-2 px-4 shadow-inner relative z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-2 md:px-6 flex justify-between items-center flex-wrap gap-2 text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start gap-2 w-full md:w-auto mx-auto md:mx-0">
+                <span class="bg-white text-academicRed-600 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full">Now Open</span>
+                <span> Admission for Daycare, Playgroup, PP1, PP2 & Grades 1-7 is ONGOING!</span>
+            </div>
+            <div class="flex items-center justify-center gap-4 text-xs mx-auto md:mx-0">
+                <a href="tel:+254712674922" class="hover:underline flex items-center gap-1"><i class="fas fa-phone-alt"></i> +254 712 674 922</a>
+                <span class="hidden sm:inline">|</span>
+                <a href="https://wa.me/254712674922?text=Hello%20St.%20Monica%20Memorial%20School,%20I%20would%20like%20to%20inquire%20about%20admissions." target="_blank" class="hover:underline flex items-center gap-1 text-green-300 font-bold"><i class="fab fa-whatsapp text-sm"></i> WhatsApp Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo & Badge -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="relative w-12 h-14 bg-white flex flex-col items-center justify-between p-1 shadow-md group-hover:scale-105 transition-transform duration-300">
+                        <div class="text-[10px] text-navy-900 font-bold leading-none py-0.5">
+                            <img src="images/stmonica_logo.jpg" alt="St Monica Crest" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-lg md:text-xl font-bold text-navy-900 leading-tight">St. Monica <span class="text-academicRed-600">Memorial</span></span>
+                        <span class="text-xs font-semibold tracking-wider text-slate-500 uppercase">School • Beyond Learning</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-slate-700 text-sm">
+                    <a href="#home" class="hover:text-academicRed-600 transition-colors py-1">Home</a>
+                    
+                    <!-- About Us Dropdown -->
+                    <div class="relative group py-1">
+                        <a href="#about" class="hover:text-academicRed-600 transition-colors flex items-center gap-1">
+                            About<i class="fas fa-chevron-down text-[10px]"></i>
+                        </a>
+                        <!-- Dropdown Menu Box -->
+                        <div class="absolute left-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                            <a href="#about" class="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">About Us</a>
+                            <a href="#why-us" class="block px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Core Values</a>
+                        </div>
+                    </div>
+
+                    <a href="#programs" class="hover:text-academicRed-600 transition-colors py-1">Academics</a>
+                    <a href="#reviews" class="hover:text-academicRed-600 transition-colors py-1">Parent Reviews</a>
+                    <a href="news.html" class="hover:text-academicRed-600 transition-colors py-1">News</a>
+                    <a href="#contact" class="hover:text-academicRed-600 transition-colors py-1">Location & Contact</a>
+                </nav>
+
+                <!-- CTA Action Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="openAdmissionModal()" class="gradient-red hover:bg-academicRed-700 text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-red-500/30 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="fas fa-paper-plane text-xs"></i> Book Admission
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-navy-900 hover:bg-slate-100 focus:outline-none">
+                    <i class="fas fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Nav Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 shadow-lg">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Home</a>
+            
+            <!-- Mobile About Us Section with Sub-links -->
+            <div class="space-y-1">
+                <div class="px-3 py-2 rounded-md font-medium text-slate-700 flex items-center justify-between">
+                    <a href="#about" onclick="toggleMobileMenu()" class="hover:text-academicRed-600">About</a>
+                </div>
+                <div class="pl-4 space-y-1 border-l-2 border-slate-100 ml-3">
+                    <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">About Us</a>
+                    <a href="#why-us" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Core Values</a>
+                    <a href="mission.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Mission and Vision</a>
+                    <a href="policies.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Policies</a>
+                </div>
+            </div>
+
+            <a href="#programs" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Academics & Programs</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Parent Reviews</a>
+            <a href="#why-us" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Why Choose Us</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Contact & Map</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="openAdmissionModal(); toggleMobileMenu();" class="w-full gradient-red text-white font-bold py-3 rounded-xl shadow text-center">
+                    Book Admission Now
+                </button>
+                <a href="https://wa.me/254712674922?text=Hello%20St.%20Monica%20Memorial%20School,%20I%20want%20to%20book%20a%20campus%20tour." target="_blank" class="w-full bg-emerald-600 text-white font-bold py-2.5 rounded-xl text-center flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Responsive Layout Wrapper -->
+    <!-- On mobile (default): Flex/stacked column. On large screens (lg+): 12-column grid layout where main takes 9 cols and sidebar takes 3 cols -->
+    <div class="flex-grow max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        
+        <!-- Left/Center Main Website Content (Spans 9 columns on lg screens, full width on mobile) -->
+        <main class="lg:col-span-9 w-full space-y-12">
+            
+            <!-- Hero Section -->
+            <section id="home" class="relative gradient-brand text-white overflow-hidden py-16 lg:py-24 rounded-3xl shadow-lg">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-academicRed-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-12 text-center max-w-4xl mx-auto space-y-9">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-xs sm:text-sm font-semibold text-red-200">
+                    Admissions Open for Next Academic Year
+                </div>
+                
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Nurturing Young Minds <span class="text-academicRed-500 underline decoration-white/30">Beyond Learning</span>
+                </h1>
+                
+                <p class="text-slate-200 text-base sm:text-lg max-w-3xl mx-auto font-normal leading-relaxed">
+                    Welcome to <strong class="text-white">St. Monica Memorial School</strong> in Mwihoko. We provide holistic Competency-Based Curriculum (CBC) education, high safety standards, and personalized care from Daycare through to Grade 3.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <button onclick="openAdmissionModal()" class="w-full sm:w-auto gradient-red hover:bg-academicRed-700 text-white font-bold text-base px-8 py-4 rounded-xl shadow-xl shadow-red-900/40 transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
+                        <span>Book Admission Slot</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a href="#programs" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-6 py-4 rounded-xl border border-white/20 backdrop-blur-sm transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-graduation-cap"></i> View Programs
+                    </a>
+                </div>
+
+                <div class="pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center max-w-3xl mx-auto">
+                    <div>
+                        <div class="text-2xl font-bold text-white">100%</div>
+                        <div class="text-xs text-slate-300">CBC Curriculum</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">1:12</div>
+                        <div class="text-xs text-slate-300">Teacher-Pupil Ratio</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">Safe</div>
+                        <div class="text-xs text-slate-300">Nurturing Academy</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-white">Full</div>
+                        <div class="text-xs text-slate-300">Co-Curricular Support</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+            <!-- About Institution Section -->
+            <section id="about" class="py-16 bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-block bg-red-50 text-academicRed-600 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                            Welcome to St. Monica
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 leading-tight">
+                            Empowering Learners with Excellence, Ethics & Holistic Growth
+                        </h2>
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            At <strong>St. Monica Memorial School</strong>, we believe education goes far beyond textbooks. Our motto, <em>"Beyond Learning"</em>, reflects our total commitment to fostering emotional intelligence, physical development, moral values, and academic excellence in early childhood and lower primary years.
+                        </p>
+                        <p class="text-slate-600 text-base leading-relaxed">
+                            Located conveniently at 160 Stage, Mwihoko, our modern facility offers a secure, spotless, and inspiring environment designed specifically for young learners to discover their talents and excel seamlessly under Kenya's Competency-Based Curriculum (CBC).
+                        </p>
+
+                        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="p-2 bg-navy-900 text-white rounded-lg"><i class="fas fa-heart text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy-900 text-sm">Loving Environment</h4>
+                                    <p class="text-xs text-slate-500">Individual attention and patient care for every child.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                <div class="p-2 bg-academicRed-600 text-white rounded-lg"><i class="fas fa-award text-lg"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-navy-900 text-sm">CBC Competency Focus</h4>
+                                    <p class="text-xs text-slate-500">Core literacy, numeracy, creative & practical skills.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-navy-900 text-white p-6 rounded-2xl flex flex-col justify-between h-48 shadow-lg transform hover:-translate-y-1 transition-transform">
+                            <i class="fas fa-shield-alt text-3xl text-academicRed-500"></i>
+                            <div>
+                                <h3 class="font-bold text-lg">Safe & Secure</h3>
+                                <p class="text-xs text-slate-300">Gated perimeter, supervised play areas, and child protection standards.</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-100 text-navy-900 p-6 rounded-2xl flex flex-col justify-between h-48 border border-slate-200 transform hover:-translate-y-1 transition-transform">
+                            <i class="fas fa-apple-alt text-3xl text-academicRed-600"></i>
+                            <div>
+                                <h3 class="font-bold text-lg">Balanced Meals</h3>
+                                <p class="text-xs text-slate-500">Nutritious hot meals and teas served daily in clean dining halls.</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-100 text-navy-900 p-6 rounded-2xl flex flex-col justify-between h-48 border border-slate-200 transform hover:-translate-y-1 transition-transform">
+                            <i class="fas fa-bus text-3xl text-navy-900"></i>
+                            <div>
+                                <h3 class="font-bold text-lg">School Transport</h3>
+                                <p class="text-xs text-slate-500">Safe pick-up & drop-off across Mwihoko, Kahawa Wendani, & surrounding areas.</p>
+                            </div>
+                        </div>
+                        <div class="bg-academicRed-600 text-white p-6 rounded-2xl flex flex-col justify-between h-48 shadow-lg transform hover:-translate-y-1 transition-transform">
+                            <i class="fas fa-paint-brush text-3xl text-white"></i>
+                            <div>
+                                <h3 class="font-bold text-lg">Co-Curricular</h3>
+                                <p class="text-xs text-red-100">Music, art, sports, play-based activities, and talent shows.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Academic Programs Section -->
+            <section id="programs" class="py-16 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-block bg-red-100 text-academicRed-600 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                        Admissions Open
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900">Our Academic Programs</h2>
+                    <p class="text-slate-600 mt-2">Tailored learning stages focused on early development, social integration, and academic foundation under CBC guidelines.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Daycare Card -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:border-academicRed-600 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 bg-red-50 text-academicRed-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-academicRed-600 group-hover:text-white transition-colors">
+                                <i class="fas fa-baby"></i>
+                            </div>
+                            <span class="text-xs font-bold text-academicRed-600 uppercase tracking-wider">Ages 1 - 2.5 Yrs</span>
+                            <h3 class="text-xl font-bold text-navy-900 mt-1 mb-2">Daycare Program</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                                A home away from home. Focused on nurturing basic motor skills, language immersion, rest, and structured social interactions in a clean environment.
+                            </p>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Individual Nap & Rest Spaces</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Sensory Play & Storytelling</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Dedicated Caregivers</li>
+                            </ul>
+                        </div>
+                        <button onclick="openAdmissionModal('Daycare')" class="w-full bg-slate-100 hover:bg-navy-900 hover:text-white text-navy-900 font-bold text-xs py-2.5 rounded-xl transition-colors text-center">
+                            Apply for Daycare
+                        </button>
+                    </div>
+
+                    <!-- Playgroup Card -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:border-academicRed-600 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 bg-blue-50 text-navy-900 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-navy-900 group-hover:text-white transition-colors">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <span class="text-xs font-bold text-navy-900 uppercase tracking-wider">Ages 2.5 - 3.5 Yrs</span>
+                            <h3 class="text-xl font-bold text-navy-900 mt-1 mb-2">Playgroup</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                                Interactive play-based foundation. Building communication skills, sharing habits, creative coloring, song, and basic toilet independence.
+                            </p>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Guided Interactive Play</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Early Speech Development</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Outdoor & indoor games</li>
+                            </ul>
+                        </div>
+                        <button onclick="openAdmissionModal('Playgroup')" class="w-full bg-slate-100 hover:bg-navy-900 hover:text-white text-navy-900 font-bold text-xs py-2.5 rounded-xl transition-colors text-center">
+                            Apply for Playgroup
+                        </button>
+                    </div>
+
+                    <!-- PP1 & PP2 Card -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:border-academicRed-600 transition-all flex flex-col justify-between group relative">
+                        <div class="absolute -top-3 right-4 bg-academicRed-600 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full shadow">
+                            CBC Early Years
+                        </div>
+                        <div>
+                            <div class="w-14 h-14 bg-red-50 text-academicRed-600 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-academicRed-600 group-hover:text-white transition-colors">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <span class="text-xs font-bold text-academicRed-600 uppercase tracking-wider">Ages 4 - 5 Yrs</span>
+                            <h3 class="text-xl font-bold text-navy-900 mt-1 mb-2">PP1 & PP2</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                                Pre-Primary 1 & 2 level focusing on pre-literacy, number concepts, environmental activities, creative art, and confidence building.
+                            </p>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Phonics & Early Reading</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Number Recognition</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Environmental Learning</li>
+                            </ul>
+                        </div>
+                        <button onclick="openAdmissionModal('PP1 & PP2')" class="w-full bg-slate-100 hover:bg-navy-900 hover:text-white text-navy-900 font-bold text-xs py-2.5 rounded-xl transition-colors text-center">
+                            Apply for PP1 / PP2
+                        </button>
+                    </div>
+
+                    <!-- Lower Primary Grades 1 to 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:border-academicRed-600 transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 bg-blue-50 text-navy-900 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:bg-navy-900 group-hover:text-white transition-colors">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <span class="text-xs font-bold text-navy-900 uppercase tracking-wider">Ages 6 - 8 Yrs</span>
+                            <h3 class="text-xl font-bold text-navy-900 mt-1 mb-2">Grades 1 to 7</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-4">
+                                Comprehensive CBC Lower Primary. Mastery of core competencies, digital literacy, language skills, mathematics, and religious education.
+                            </p>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Full CBC Curriculum Alignment</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Digital Literacy Integration</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Assessment & Talent Nurturing</li>
+                            </ul>
+                        </div>
+                        <button onclick="openAdmissionModal('Grades 1 to 7')" class="w-full bg-slate-100 hover:bg-navy-900 hover:text-white text-navy-900 font-bold text-xs py-2.5 rounded-xl transition-colors text-center">
+                            Apply for Primary 1-7
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Interactive Fee & Tour Inquiry Calculator Tool -->
+            <section class="py-16 bg-navy-900 text-white relative overflow-hidden rounded-3xl p-6 sm:p-10 shadow-xl">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="bg-white/5 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/10 shadow-2xl">
+                        <div class="text-center max-w-2xl mx-auto mb-8">
+                            <span class="bg-academicRed-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Instant Estimator</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Plan Your Child’s Enrollment</h2>
+                            <p class="text-slate-300 text-xs sm:text-sm mt-1">Select your program interest to calculate key details and schedule a quick academy visit.</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-6 items-center">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">1. Select Grade / Level</label>
+                                <select id="calc-grade" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
+                                    <option value="daycare">Daycare (Full Day / Half Day)</option>
+                                    <option value="playgroup">Playgroup</option>
+                                    <option value="pp1">PP1 (Pre-Primary 1)</option>
+                                    <option value="pp2">PP2 (Pre-Primary 2)</option>
+                                    <option value="grade1">Grade 1</option>
+                                    <option value="grade2">Grade 2</option>
+                                    <option value="grade3">Grade 3</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">2. Need Transport?</label>
+                                <select id="calc-transport" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
+                                    <option value="none">No Transport Required</option>
+                                    <option value="mwihoko">Mwihoko Area</option>
+                                    <option value="wendani">Kahawa Wendani / 160 Stage Area</option>
+                                    <option value="other">Nearby Environs</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">3. Preferred Session</label>
+                                <select id="calc-term" onchange="calculateInquiry()" class="w-full bg-navy-950 text-white rounded-xl p-3 border border-slate-700 text-sm focus:outline-none focus:border-academicRed-500">
+                                    <option value="term1">Upcoming Term 1</option>
+                                    <option value="term2">Upcoming Term 2</option>
+                                    <option value="term3">Upcoming Term 3</option>
+                                    <option value="midterm">Immediate Entry</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="calc-result" class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="text-center sm:text-left">
+                                <span class="text-xs text-slate-400">Estimated Admission Availability:</span>
+                                <div class="text-lg font-bold text-green-400 flex items-center gap-2 justify-center sm:justify-start">
+                                    <i class="fas fa-check-circle"></i> Slots Available For Selected Program
+                                </div>
+                            </div>
+                            <button onclick="sendQuickWhatsAppInquiry()" class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-xl shadow transition-all flex items-center justify-center gap-2 text-sm">
+                                <i class="fab fa-whatsapp text-lg"></i> Request Fee Structure on WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Parent Reviews & Testimonials Section -->
+            <section id="reviews" class="py-16 bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <div class="inline-block bg-red-100 text-academicRed-600 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                        Trusted By Parents
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900">What Parents Say About Us</h2>
+                    <p class="text-slate-600 mt-2">Real feedback from parents with children studying at St. Monica Memorial School, Mwihoko.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 relative shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-academicRed-600 text-sm flex gap-1 mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed italic mb-6">
+                            "Congrats for the good work keep on going forward."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-navy-900 text-white font-bold rounded-full flex items-center justify-center text-sm">
+                                WI
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">Wabwile Isaiah</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 relative shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-academicRed-600 text-sm flex gap-1 mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed italic mb-6">
+                            "I highly recommend this school my son is there and its the best."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-academicRed-600 text-white font-bold rounded-full flex items-center justify-center text-sm">
+                                Eva
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">Eva Wambui</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 relative shadow-sm hover:shadow-md transition-shadow">
+                        <div class="text-academicRed-600 text-sm flex gap-1 mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed italic mb-6">
+                            "Happy Labour day too to all St.Monica Memorial school family 👪 a school with no regrets for young children."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-navy-800 text-white font-bold rounded-full flex items-center justify-center text-sm">
+                                VO
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 text-sm">Violet Omondi.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center bg-slate-100 rounded-2xl p-6 border border-slate-200 max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3 text-left">
+                        <i class="fab fa-facebook text-3xl text-blue-600"></i>
+                        <div>
+                            <h4 class="font-bold text-navy-900 text-sm">Follow Our Facebook Community</h4>
+                            <p class="text-xs text-slate-500">See daily school updates, events, and activities.</p>
+                        </div>
+                    </div>
+                    <a href="https://www.facebook.com/stmonicaschoolwendani/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-colors whitespace-nowrap">
+                        Visit Facebook Page
+                    </a>
+                </div>
+            </section>
+
+            <!-- Why Choose Us -->
+            <section id="why-us" class="py-16 bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900">Why Choose St. Monica Memorial?</h2>
+                    <p class="text-slate-600 mt-2">Key pillars that make our institution a trusted choice for parents in Mwihoko & Wendani.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-red-50 text-academicRed-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2">Individualized Attention</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Controlled class sizes ensure every child gets personalized guidance from teachers to build confidence and unlock potential.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-blue-50 text-navy-900 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2">CBC Qualified Teachers</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Our educators are fully certified and trained in updated Competency-Based Curriculum frameworks and modern early childhood methodologies.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2">Nutritious Catering</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Warm, well-balanced meals cooked in high hygiene conditions to fuel concentration, health, and physical development.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-yellow-50 text-yellow-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2">Strong Moral Foundation</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Instilling discipline, respect, empathy, and spiritual values as part of everyday routine and character formation.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2">Creative & Co-Curricular</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Music, creative art, sports activities, and drama designed to encourage self-expression and team spirit.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fas fa-bus-alt"></i>
+                        </div>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2">Reliable Van Transport</h3>
+                        <p class="text-slate-600 text-xs leading-relaxed">
+                            Safe pick-up and drop-off services covering 160 Stage, Mwihoko, Kahawa Wendani, and neighboring estates.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact & Location Section -->
+            <section id="contact" class="py-16 bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <span class="bg-red-100 text-academicRed-600 font-bold text-xs px-3 py-1 rounded-full uppercase">Get in Touch</span>
+                            <h2 class="text-3xl font-extrabold text-navy-900 mt-2">Visit Or Call Us Today</h2>
+                            <p class="text-slate-600 text-sm mt-1">We welcome parents to visit our school academy, meet our teachers, and tour our classrooms.</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <div class="w-10 h-10 bg-navy-900 text-white rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-navy-900 text-sm">Physical Address</h4>
+                                    <p class="text-xs text-slate-600 mt-0.5">160 Stage, Mwihoko Area</p>
+                                    <p class="text-xs text-slate-500">Accessible from Kahawa Wendani & Mwihoko</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <div class="w-10 h-10 bg-academicRed-600 text-white rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-navy-900 text-sm">Phone Line / Inquiries</h4>
+                                    <a href="tel:+254712674922" class="text-sm font-extrabold text-academicRed-600 hover:underline block mt-0.5">+254 712 674 922</a>
+                                    <span class="text-[11px] text-slate-500">Mon - Fri: 7:00 AM - 5:00 PM</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <div class="w-10 h-10 bg-green-600 text-white rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-navy-900 text-sm">Instant WhatsApp Booking</h4>
+                                    <a href="https://wa.me/254712674922?text=Hello%20St.%20Monica%20School,%20I%20am%20inquiring%20about%20admissions." target="_blank" class="text-xs font-bold text-green-600 hover:underline block mt-0.5">Click here to start chat (+254 712 674 922)</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                    <i class="fab fa-facebook-f"></i>
+                                </div>
+                                <div>
+                                    <a href="https://www.facebook.com/stmonicaschoolwendani/" target="_blank" class="text-xs font-bold text-blue-600 hover:underline block mt-0.5">
+                                        <h4 class="font-bold text-navy-900 text-sm">Official Facebook Page</h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <div class="bg-slate-100 rounded-3xl p-6 border border-slate-200 shadow-md h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="font-bold text-navy-900 text-lg flex items-center gap-2">
+                                        <i class="fas fa-compass text-academicRed-600"></i> Location Map & Directions
+                                    </h3>
+                                    <span class="text-xs bg-white font-bold text-slate-600 px-3 py-1 rounded-full border">160 Stage, Mwihoko</span>
+                                </div>
+                                
+                                <div class="w-full h-80 rounded-2xl overflow-hidden border border-slate-300 shadow-inner relative bg-slate-200">
+                                   <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3988.940065165486!2d36.9590581749655!3d-1.2022073987863107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMcKwMTInMDguMCJTIDM2wrA1Nyc0MS45IkU!5e0!3m2!1sen!2sus!4v1792221734080!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+                                    
+                                   </iframe>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 bg-white p-4 rounded-xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <div class="text-xs text-slate-600">
+                                    <span class="font-bold text-navy-900 block">Directions Helper:</span>
+                                    Board Mwihoko matatus from Kahawa Wendani / Githurai to 160 Stage.
+                                </div>
+                                <a href="https://maps.google.com/?q=Mwihoko+160+Stage" target="_blank" class="bg-navy-900 hover:bg-navy-950 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors whitespace-nowrap flex items-center gap-2">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Side Advertising Web Banners Sidebar (Spans 3 columns on large screens, stacks below main content on mobile) -->
+        <aside class="lg:col-span-3 w-full space-y-6 lg:sticky lg:top-28">
+            
+            <!-- Sidebar Header -->
+            <div class="bg-navy-900 text-white p-4 rounded-2xl shadow-md flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <h3 class="font-bold text-xs uppercase tracking-wider">Featured Adverts</h3>
+                </div>
+               
+            </div>
+
+            <!-- Main Featured Web Banner (stmonica_banner.jpg) -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-2 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                
+                <div class="rounded-xl overflow-hidden cursor-pointer" onclick="openAdmissionModal()">
+                    <img src="images/stmonica_banner.jpg" alt="St. Monica Admission Banner" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-300">
+                </div>
+
+                <div class="p-2 pt-3">
+                    <button onclick="openAdmissionModal()" class="w-full gradient-red text-white text-xs font-bold py-2.5 rounded-xl shadow hover:opacity-95 transition-opacity flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane text-xs"></i> Apply / Inquire Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Banner Ad 2: Local Partner / Service Provider -->
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                <div class="rounded-xl overflow-hidden mb-3 bg-slate-100 border border-slate-200 p-4 text-navy-900 text-center">
+                    <div class="w-10 h-10 bg-academicRed-600 text-white rounded-full flex items-center justify-center mx-auto mb-2 text-sm">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h4 class="font-bold text-sm">School Uniforms & Books</h4>
+                    <p class="text-[11px] text-slate-600 mt-1">Get approved CBC textbooks, stationery, and uniforms nearby.</p>
+                </div>
+                <a href="https://wa.me/254712674922?text=Hello,%20I%20would%20like%20to%20inquire%20about%20school%20uniforms%20and%20books." target="_blank" class="block w-full bg-navy-900 hover:bg-navy-950 text-white text-center text-xs font-bold py-2 rounded-xl transition-colors">
+                    Enquire
+                </a>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Direct Online Admission & Booking Modal with Formspree Integration -->
+    <div id="admission-modal" class="fixed inset-0 z-50 hidden bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl overflow-hidden border border-slate-100 my-8 transform transition-all">
+            
+            <!-- Modal Header -->
+            <div class="gradient-brand p-6 text-white relative">
+                <button onclick="closeAdmissionModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-academicRed-600 rounded-xl flex items-center justify-center text-white font-bold">
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-xl font-bold">Online Admission Booking</h3>
+                        <p class="text-xs text-slate-300">St. Monica Memorial School • Direct Email Enquiry</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formspree Submission Status Banner -->
+            <div id="formStatusBanner" class="hidden p-4 text-xs font-semibold text-center border-b"></div>
+
+            <!-- Modal Form pointing to Formspree -->
+            <form id="admissionForm" action="https://formspree.io/f/xwlvaalo" method="POST" onsubmit="handleFormspreeSubmit(event)" class="p-6 space-y-4">
+                
+                <!-- Hidden subject & metadata for email notification -->
+                <input type="hidden" name="_subject" value="New Admission Enquiry - St. Monica Memorial School">
+                <input type="hidden" name="School_Location" value="160 Stage, Mwihoko">
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-navy-900 mb-1">Parent / Guardian Name *</label>
+                        <input type="text" name="Parent_Name" id="parentName" required placeholder="e.g. Mary Wanjiku" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy-900 mb-1">Phone Number (WhatsApp) *</label>
+                        <input type="tel" name="Phone_Number" id="parentPhone" required placeholder="0712345678" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600">
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-navy-900 mb-1">Email Address (Optional)</label>
+                        <input type="email" name="_replyto" id="parentEmail" placeholder="parent@gmail.com" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy-900 mb-1">Child's Name *</label>
+                        <input type="text" name="Child_Name" id="childName" required placeholder="Child's Full Name" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600">
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-navy-900 mb-1">Grade / Level Interested In *</label>
+                        <select name="Grade_Level" required id="modalGradeSelect" required class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600">
+                            <option value="Daycare">Daycare</option>
+                            <option value="Playgroup">Playgroup</option>
+                            <option value="PP1">Pre-Primary 1 (PP1)</option>
+                            <option value="PP2">Pre-Primary 2 (PP2)</option>
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy-900 mb-1">Expected Start Date</label>
+                        <input type="date" required name="Expected_Start_Date" id="startDate" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-navy-900 mb-1">Location / Residence</label>
+                    <input type="text" required name="Residence_Location" id="locationArea" placeholder="e.g. Mwihoko Stage 160" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-navy-900 mb-1">Special Notes / Questions (Optional)</label>
+                    <textarea name="Special_Notes" id="notes" rows="2" placeholder="Mention transport needs, diet requirements, etc." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-academicRed-600 focus:ring-1 focus:ring-academicRed-600"></textarea>
+                </div>
+
+                <!-- Submit buttons -->
+                <div class="pt-2 flex flex-col gap-2">
+                    <button type="submit" id="submitBtn" class="w-full gradient-red text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-red-600/30 transition-all flex items-center justify-center gap-2">
+                        <i class="fas fa-envelope"></i> <span id="submitBtnText">Submit & Send Email Enquiry</span>
+                    </button>
+                    
+                    <button type="button" onclick="sendViaWhatsAppAlternative()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow transition-all flex items-center justify-center gap-2 text-xs">
+                        <i class="fab fa-whatsapp text-sm"></i> Send via WhatsApp Instead
+                    </button>
+
+                    <p class="text-[11px] text-center text-slate-500 mt-1">
+                        Inquiries are delivered to the St. Monica administration desk via Formspree email.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-navy-950 text-white border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-4 gap-8">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="font-serif font-bold text-lg">St. Monica Memorial</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Nurturing early foundation skills, academic excellence, and Christian ethics under Kenya CBC. "Beyond Learning".
+                    </p>
+                    <div class="flex items-center gap-3 text-slate-400">
+                        <a href="https://www.facebook.com/stmonicaschoolwendani/" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-academicRed-600 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xs"></i>
+                        </a>
+                        <a href="https://wa.me/254712674922" target="_blank" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xs"></i>
+                        </a>
+                        <a href="tel:+254712674922" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-academicRed-600 hover:text-white transition-colors">
+                            <i class="fas fa-phone-alt text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm text-white uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">Academic Offerings</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#programs" class="hover:text-academicRed-500 transition-colors">Daycare Facility</a></li>
+                        <li><a href="#programs" class="hover:text-academicRed-500 transition-colors">Playgroup Class</a></li>
+                        <li><a href="#programs" class="hover:text-academicRed-500 transition-colors">Pre-Primary 1 (PP1)</a></li>
+                        <li><a href="#programs" class="hover:text-academicRed-500 transition-colors">Pre-Primary 2 (PP2)</a></li>
+                        <li><a href="#programs" class="hover:text-academicRed-500 transition-colors">Primary Grade 1, 2 & 3</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm text-white uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#home" class="hover:text-academicRed-500 transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-academicRed-500 transition-colors">About St. Monica</a></li>
+                        <li><a href="#reviews" class="hover:text-academicRed-500 transition-colors">Parent Testimonials</a></li>
+                        <li><a href="news.html" class="hover:text-academicRed-500 transition-colors">News</a></li>
+                        <li><a href="vision.html" class="hover:text-academicRed-500 transition-colors">Our Vision and Mission</a></li>
+                        <li><a href="#contact" class="hover:text-academicRed-500 transition-colors">School Directions</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-sm text-white uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">Contact Info</h4>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt text-academicRed-500 mt-0.5"></i>
+                            <span>160 Stage, Mwihoko</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone-alt text-academicRed-500"></i>
+                            <a href="tel:+254712674922" class="hover:text-white">+254 712 674 922</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fab fa-whatsapp text-green-500"></i>
+                            <a href="https://wa.me/254712674922" target="_blank" class="hover:text-white">+254 712 674 922</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>&copy; <span id="year"></span> St. Monica Memorial School. All Rights Reserved. <a href="https://techstacity.vercel.app" target="_blank"> Website by Techstacity</a></p>
+                <p class="italic">Beyond Learning</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Interactive Logic & Formspree AJAX Handler -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function openAdmissionModal(defaultGrade = 'Daycare') {
+            const modal = document.getElementById('admission-modal');
+            const select = document.getElementById('modalGradeSelect');
+            if (select) {
+                select.value = defaultGrade;
+            }
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAdmissionModal() {
+            const modal = document.getElementById('admission-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Asynchronous Formspree Submission Handler
+        async function handleFormspreeSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const submitBtnText = document.getElementById('submitBtnText');
+            const banner = document.getElementById('formStatusBanner');
+
+            // Indicate loading state
+            submitBtn.disabled = true;
+            submitBtnText.textContent = 'Sending Enquiry...';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    banner.className = 'p-4 text-xs font-semibold text-center bg-green-100 text-green-800 border-b border-green-200 block';
+                    banner.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Thank you! Your admission enquiry has been sent directly to our administrative team.';
+                    form.reset();
+                    setTimeout(() => {
+                        closeAdmissionModal();
+                        banner.classList.add('hidden');
+                    }, 4000);
+                } else {
+                    const data = await response.json();
+                    banner.className = 'p-4 text-xs font-semibold text-center bg-red-100 text-red-800 border-b border-red-200 block';
+                    banner.innerHTML = `<i class="fas fa-exclamation-circle mr-1"></i> ${data.errors ? data.errors.map(e => e.message).join(', ') : 'Form submission failed. Please try again or use WhatsApp.'}`;
+                }
+            } catch (error) {
+                banner.className = 'p-4 text-xs font-semibold text-center bg-red-100 text-red-800 border-b border-red-200 block';
+                banner.innerHTML = '<i class="fas fa-exclamation-triangle mr-1"></i> Network error. Please check your connection or send via WhatsApp.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtnText.textContent = 'Submit & Send Email Enquiry';
+            }
+        }
+
+        // Send via WhatsApp Alternative
+        function sendViaWhatsAppAlternative() {
+            const parentName = document.getElementById('parentName').value || 'Parent';
+            const parentPhone = document.getElementById('parentPhone').value || 'N/A';
+            const childName = document.getElementById('childName').value || 'Child';
+            const grade = document.getElementById('modalGradeSelect').value;
+            const startDate = document.getElementById('startDate').value || 'As soon as possible';
+            const location = document.getElementById('locationArea').value || '160 Stage, Mwihoko';
+            const notes = document.getElementById('notes').value || 'None';
+
+            const message = `Hello St. Monica Memorial School!%0A%0A*ADMISSION ENQUIRY*%0A--------------------------------%0A*Parent Name:* ${encodeURIComponent(parentName)}%0A*Phone:* ${encodeURIComponent(parentPhone)}%0A*Child Name:* ${encodeURIComponent(childName)}%0A*Grade Interested:* ${encodeURIComponent(grade)}%0A*Expected Start Date:* ${encodeURIComponent(startDate)}%0A*Location:* ${encodeURIComponent(location)}%0A*Notes:* ${encodeURIComponent(notes)}%0A--------------------------------%0APlease assist with enrollment details.`;
+
+            closeAdmissionModal();
+            window.open(`https://wa.me/254712674922?text=${message}`, '_blank');
+        }
+
+        function sendQuickWhatsAppInquiry() {
+            const grade = document.getElementById('calc-grade').value;
+            const transport = document.getElementById('calc-transport').value;
+            const term = document.getElementById('calc-term').value;
+
+            const msg = `Hello St. Monica School, I would like to inquire about fee structure and admission for *${grade.toUpperCase()}* (${term.toUpperCase()}) with transport option: *${transport}*. Please share details.`;
+            window.open(`https://wa.me/254712674922?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function calculateInquiry() {
+            const resultDiv = document.getElementById('calc-result');
+            resultDiv.classList.add('opacity-80');
+            setTimeout(() => resultDiv.classList.remove('opacity-80'), 200);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('admission-modal');
+            if (event.target === modal) {
+                closeAdmissionModal();
+            }
+        }
+    </script>
+</body>
+</html>
