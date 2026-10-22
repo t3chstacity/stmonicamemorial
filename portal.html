@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Monica Memorial School & Academic Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B1C36',
+                            900: '#0D2240',
+                            950: '#08162B',
+                        },
+                        crimson: {
+                            600: '#D91438',
+                            700: '#C8102E',
+                            800: '#A30B23',
+                        },
+                        gold: {
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .sidebar-item-active { background-color: rgba(255, 255, 255, 0.12); border-left: 4px solid #F59E0B; }
+        
+        @media print {
+            body * { visibility: hidden; }
+            #printable-report-card, #printable-report-card * { visibility: visible; }
+            #printable-report-card { position: absolute; left: 0; top: 0; width: 100%; padding: 0; margin: 0; background: white !important; }
+            .no-print { display: none !important; }
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="text-slate-800 bg-slate-100 min-h-screen flex flex-col antialiased">
+
+    <div id="app" class="min-h-screen flex flex-col">
+
+        <!-- AUTHENTICATION SCREEN -->
+        <div id="auth-screen" class="min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 flex items-center justify-center p-4">
+            <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
+                <!-- Header Header -->
+                <div class="bg-navy-900 p-6 text-center relative border-b-4 border-gold-500">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg border-2 border-gold-400">
+                        <i class="fa-solid fa-graduation-cap text-3xl text-navy-900"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-white tracking-wide uppercase">St. Monica Memorial</h1>
+                    <p class="text-gold-400 text-xs font-semibold uppercase tracking-wider mt-0.5">Academic Portal • 'Beyond Learning'</p>
+                    <p class="text-slate-300 text-xs mt-1">160 Stage Mwihoko | Tel: +254 712 674 922</p>
+                </div>
+
+                <!-- Form Body -->
+                <div class="p-6 space-y-5">
+                    <!-- Quick Demo Credentials Banner -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-600">
+                        <div class="font-bold text-slate-800 mb-1 flex items-center">
+                            <i class="fa-solid fa-bolt text-gold-500 mr-1.5"></i> One-Click Quick Demo Login:
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mt-2">
+                            <button onclick="quickLogin('teacher')" class="py-2 px-3 bg-navy-900 hover:bg-navy-800 text-white font-medium rounded-lg shadow-sm transition flex items-center justify-center gap-1.5 text-xs">
+                                <i class="fa-solid fa-chalkboard-user"></i> Teacher Demo
+                            </button>
+                            <button onclick="quickLogin('parent')" class="py-2 px-3 bg-crimson-700 hover:bg-crimson-800 text-white font-medium rounded-lg shadow-sm transition flex items-center justify-center gap-1.5 text-xs">
+                                <i class="fa-solid fa-user-shield"></i> Parent Demo
+                            </button>
+                        </div>
+                    </div>
+
+                    <form onsubmit="handleLogin(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Select User Portal</label>
+                            <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-lg">
+                                <button type="button" id="role-teacher-btn" onclick="selectRole('teacher')" class="py-1.5 text-xs font-semibold rounded-md transition bg-navy-900 text-white shadow-sm">
+                                    <i class="fa-solid fa-school mr-1"></i> Staff / Admin
+                                </button>
+                                <button type="button" id="role-parent-btn" onclick="selectRole('parent')" class="py-1.5 text-xs font-semibold rounded-md transition text-slate-600 hover:text-slate-900">
+                                    <i class="fa-solid fa-family-restroom mr-1"></i> Parent / Student
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Email / Unique ID</label>
+                            <input type="text" id="login-id" required value="m.wanjiku@stmonica.ac.ke" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-900">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <label class="text-xs font-semibold text-slate-700 uppercase">Password</label>
+                                <a href="#" onclick="showForgotPasswordModal()" class="text-xs text-crimson-700 hover:underline font-medium">Forgot Password?</a>
+                            </div>
+                            <input type="password" id="login-password" required value="••••••••" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-navy-900">
+                        </div>
+
+                        <button type="submit" class="w-full py-3 bg-navy-900 hover:bg-navy-800 text-white font-semibold rounded-xl shadow-md transition duration-150 flex items-center justify-center gap-2">
+                            <span>Access Dashboard</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="bg-slate-50 border-t border-slate-200 px-6 py-3 text-center">
+                    <p class="text-xs text-slate-500">CBC Competency-Based Academic Portal • v3.2.0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN DASHBOARD SHELL (Hidden until login) -->
+        <div id="main-dashboard" class="hidden min-h-screen flex flex-col md:flex-row bg-slate-100">
+            
+            <!-- Mobile Navigation Bar -->
+            <div class="md:hidden bg-navy-900 text-white px-4 py-3 flex items-center justify-between border-b-2 border-gold-500 no-print">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-navy-900 font-bold">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="font-bold text-sm tracking-wide">ST. MONICA PORTAL</span>
+                </div>
+                <button onclick="toggleMobileSidebar()" class="text-white p-1 text-xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Sidebar -->
+            <aside id="sidebar" class="hidden md:flex flex-col w-64 bg-navy-900 text-slate-200 border-r border-navy-800 flex-shrink-0 min-h-screen no-print z-30 transition-all duration-200">
+                <!-- Branding Header -->
+                <div class="p-5 border-b border-navy-800 flex items-center space-x-3 bg-navy-950">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-navy-900 font-bold text-xl shadow border border-gold-400">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-white text-sm tracking-wide">ST. MONICA</h2>
+                        <p class="text-[10px] text-gold-400 font-semibold uppercase tracking-wider">Beyond Learning</p>
+                    </div>
+                </div>
+
+                <!-- User Info Profile Bar -->
+                <div class="p-4 bg-navy-800/50 border-b border-navy-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div id="user-avatar" class="w-9 h-9 rounded-full bg-crimson-700 text-white flex items-center justify-center font-bold text-sm border border-gold-400">
+                            MW
+                        </div>
+                        <div class="overflow-hidden">
+                            <p id="user-name" class="text-xs font-semibold text-white truncate">Madam Wanjiku</p>
+                            <span id="user-role-badge" class="inline-block px-1.5 py-0.5 text-[10px] font-bold bg-gold-500 text-navy-900 rounded uppercase">
+                                Teacher
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar" id="nav-menu">
+                    <!-- Nav items injected dynamically via JS based on user role -->
+                </nav>
+
+                <!-- Sidebar Footer & Quick Actions -->
+                <div class="p-4 border-t border-navy-800 bg-navy-950/80 space-y-2">
+                    <button onclick="switchRoleToggle()" class="w-full py-2 px-3 bg-navy-800 hover:bg-navy-700 text-slate-200 rounded-lg text-xs font-medium flex items-center justify-center gap-2 border border-slate-700/50 transition">
+                        <i class="fa-solid fa-repeat text-gold-400"></i>
+                        <span>Switch Role Demo</span>
+                    </button>
+                    <button onclick="handleLogout()" class="w-full py-2 px-3 bg-crimson-700/20 hover:bg-crimson-700/40 text-crimson-400 hover:text-crimson-200 rounded-lg text-xs font-medium flex items-center justify-center gap-2 border border-crimson-800/40 transition">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Sign Out</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 flex flex-col min-w-0 overflow-x-hidden">
+                <!-- Top Navbar Header -->
+                <header class="bg-white border-b border-slate-200 px-6 py-3 flex items-center justify-between no-print shadow-sm">
+                    <div class="flex items-center space-x-3">
+                        <h1 id="page-title" class="text-lg font-bold text-slate-800">Teacher Overview</h1>
+                        <span id="academic-term-badge" class="hidden sm:inline-block px-2.5 py-0.5 bg-blue-50 text-navy-900 border border-blue-200 text-xs font-semibold rounded-full">
+                            Academic Year 2026 • Term 1
+                        </span>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <!-- Search Quick Button / Indicator -->
+                        <div id="save-status-indicator" class="text-xs text-slate-500 flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-md">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span class="hidden sm:inline">Data Synced</span>
+                        </div>
+
+                        <!-- Date Display -->
+                        <div class="hidden lg:block text-xs text-slate-500 font-medium">
+                            <i class="fa-regular fa-calendar-check mr-1 text-navy-900"></i>
+                            <span id="current-date-display">Mon, Oct 12, 2026</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Page View Dynamic Container -->
+                <div id="content-area" class="p-4 sm:p-6 flex-1 overflow-y-auto">
+                    <!-- Dynamic views injected here via JS -->
+                </div>
+            </main>
+        </div>
+
+    </div>
+
+    <!-- MODAL CONTAINERS -->
+    <!-- Add/Edit Student Modal -->
+    <div id="student-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden border border-slate-200">
+            <div class="bg-navy-900 text-white px-6 py-4 flex items-center justify-between">
+                <h3 id="student-modal-title" class="font-bold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-user-plus text-gold-400"></i> Add New Student
+                </h3>
+                <button onclick="closeStudentModal()" class="text-slate-300 hover:text-white text-xl">&times;</button>
+            </div>
+            <form id="student-form" onsubmit="saveStudentForm(event)" class="p-6 space-y-4 overflow-y-auto custom-scrollbar flex-1">
+                <input type="hidden" id="student-form-id">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Admission Number *</label>
+                        <input type="text" id="form-adm" required placeholder="SMM-2026-000" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Full Student Name *</label>
+                        <input type="text" id="form-name" required placeholder="e.g. Liam Mutua" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Class / Grade Level *</label>
+                        <select id="form-grade" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                            <option value="Daycare">Daycare</option>
+                            <option value="Playgroup">Playgroup</option>
+                            <option value="PP1">PP1 (Pre-Primary 1)</option>
+                            <option value="PP2">PP2 (Pre-Primary 2)</option>
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2" selected>Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Gender *</label>
+                        <select id="form-gender" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Date of Birth</label>
+                        <input type="date" id="form-dob" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Enrollment Status</label>
+                        <select id="form-status" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive / Transferred</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="border-slate-200 my-2">
+                <h4 class="text-xs font-bold text-navy-900 uppercase tracking-wider">Parent / Guardian Information</h4>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Parent Name *</label>
+                        <input type="text" id="form-parent-name" required placeholder="e.g. David Mutua" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Parent Phone *</label>
+                        <input type="text" id="form-parent-phone" required placeholder="+254 700 000 000" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">Parent Email</label>
+                        <input type="email" id="form-parent-email" placeholder="parent@example.com" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Special Medical / Behavioral Notes</label>
+                    <textarea id="form-notes" rows="2" placeholder="e.g. Allergic to peanuts, wears glasses..." class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-navy-900"></textarea>
+                </div>
+
+                <div class="pt-3 flex items-center justify-end space-x-3 border-t border-slate-200">
+                    <button type="button" onclick="closeStudentModal()" class="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-navy-900 hover:bg-navy-800 text-white rounded-lg text-sm font-semibold shadow">Save Student Record</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- M-Pesa Fee Payment Modal -->
+    <div id="mpesa-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200">
+            <div class="bg-emerald-700 text-white p-5 text-center relative">
+                <button onclick="closeMpesaModal()" class="absolute right-4 top-4 text-white/80 hover:text-white text-xl">&times;</button>
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2 text-emerald-700 font-bold text-xl shadow">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h3 class="font-bold text-lg">M-Pesa Express Payment</h3>
+                <p class="text-xs text-emerald-100">St. Monica Memorial Fee Collection</p>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-800">
+                    <p class="font-semibold">Fee Balance: KES <span id="mpesa-modal-balance">14,500</span></p>
+                    <p class="text-[11px] text-emerald-700 mt-0.5">Paybill Number: <strong>522522</strong> • Account: <span id="mpesa-modal-adm">SMM-2024-042</span></p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">M-Pesa Phone Number</label>
+                    <input type="text" id="mpesa-phone" value="+254 712 674 922" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Amount to Pay (KES)</label>
+                    <input type="number" id="mpesa-amount" value="14500" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-emerald-600">
+                </div>
+
+                <div id="mpesa-status-message" class="hidden text-xs p-3 rounded-lg text-center font-medium"></div>
+
+                <button id="mpesa-submit-btn" onclick="processMpesaPayment()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-xs"></i>
+                    <span>Send STK Push Prompt</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Message Toast Box -->
+    <div id="toast-message" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-sm bg-navy-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 border border-gold-500/40">
+        <div id="toast-icon" class="text-gold-400 text-lg"><i class="fa-solid fa-circle-check"></i></div>
+        <p id="toast-text" class="text-xs font-medium text-slate-100">Operation completed successfully.</p>
+    </div>
+
+    <script>
+        // --- DATA STORE INITIALIZATION ---
+        const DEFAULT_STUDENTS = [
+            {
+                id: "SMM-2024-042",
+                adm: "SMM-2024-042",
+                name: "Liam Mutua",
+                grade: "Grade 2",
+                gender: "Male",
+                dob: "2018-05-14",
+                status: "Active",
+                parentName: "David Mutua",
+                parentPhone: "+254 722 123 456",
+                parentEmail: "d.mutua@gmail.com",
+                notes: "Speaks fluent English. Very active in soccer.",
+                attendance: 96,
+                feeTotal: 38500,
+                feePaid: 24000,
+                grades: {
+                    literacy: { mark: 88, level: "EE", remark: "Exemplary reading comprehension and spelling skills." },
+                    numeracy: { mark: 82, level: "EE", remark: "Understands place value and simple addition/subtraction easily." },
+                    environmental: { mark: 76, level: "ME", remark: "Good knowledge of local flora and fauna." },
+                    hygiene: { mark: 90, level: "EE", remark: "Maintains high personal hygiene and classroom neatness." },
+                    creativeArts: { mark: 70, level: "ME", remark: "Enthusiastic in drawing and pattern work." }
+                },
+                conduct: "Exemplary behavior. Demonstrates leadership qualities in group tasks.",
+                teacherNotes: "Liam has made remarkable progress this term. Encouraged to practice more creative writing."
+            },
+            {
+                id: "SMM-2025-018",
+                adm: "SMM-2025-018",
+                name: "Chloe Wanjiku",
+                grade: "PP1",
+                gender: "Female",
+                dob: "2020-09-21",
+                status: "Active",
+                parentName: "David Mutua", // Same parent for demo multi-child view
+                parentPhone: "+254 722 123 456",
+                parentEmail: "d.mutua@gmail.com",
+                notes: "Sensitive eyes, sits near the front board.",
+                attendance: 92,
+                feeTotal: 32000,
+                feePaid: 32000,
+                grades: {
+                    literacy: { mark: 75, level: "ME", remark: "Recognizes letter sounds and simple phonics." },
+                    numeracy: { mark: 78, level: "ME", remark: "Counts objects up to 30 accurately." },
+                    environmental: { mark: 85, level: "EE", remark: "Shows great interest in nature activities." },
+                    hygiene: { mark: 80, level: "ME", remark: "Consistently washes hands before and after meals." },
+                    creativeArts: { mark: 88, level: "EE", remark: "Extremely talented in color identification and coloring." }
+                },
+                conduct: "Punctual, polite, and eager to assist peers.",
+                teacherNotes: "Chloe is a bright pupil who loves storytime. Great social skills."
+            },
+            {
+                id: "SMM-2024-009",
+                adm: "SMM-2024-009",
+                name: "Ethan Kiprop",
+                grade: "Grade 2",
+                gender: "Male",
+                dob: "2018-02-10",
+                status: "Active",
+                parentName: "Grace Kiprop",
+                parentPhone: "+254 711 987 654",
+                parentEmail: "g.kiprop@yahoo.com",
+                notes: "Requires slight assistance with math drills.",
+                attendance: 90,
+                feeTotal: 38500,
+                feePaid: 38500,
+                grades: {
+                    literacy: { mark: 65, level: "ME", remark: "Satisfactory vocabulary development." },
+                    numeracy: { mark: 58, level: "AE", remark: "Needs additional practice with subtraction concepts." },
+                    environmental: { mark: 72, level: "ME", remark: "Understands simple weather observations." },
+                    hygiene: { mark: 74, level: "ME", remark: "Understands importance of clean drinking water." },
+                    creativeArts: { mark: 62, level: "AE", remark: "Developing rhythmic body movements." }
+                },
+                conduct: "Good pupil. Sometimes easily distracted during independent tasks.",
+                teacherNotes: "Ethan is making steady progress. Home support in math drills recommended."
+            },
+            {
+                id: "SMM-2026-003",
+                adm: "SMM-2026-003",
+                name: "Amina Otieno",
+                grade: "Grade 3",
+                gender: "Female",
+                dob: "2017-11-03",
+                status: "Active",
+                parentName: "Hassan Otieno",
+                parentPhone: "+254 733 456 789",
+                parentEmail: "h.otieno@outlook.com",
+                notes: "Left-handed writing support provided.",
+                attendance: 98,
+                feeTotal: 41000,
+                feePaid: 20000,
+                grades: {
+                    literacy: { mark: 94, level: "EE", remark: "Outstanding reading speed and creative composition." },
+                    numeracy: { mark: 91, level: "EE", remark: "Excellent problem-solving abilities." },
+                    environmental: { mark: 89, level: "EE", remark: "Deep understanding of environmental conservation." },
+                    hygiene: { mark: 95, level: "EE", remark: "Role model in personal hygiene." },
+                    creativeArts: { mark: 85, level: "EE", remark: "Creative in modeling and craft projects." }
+                },
+                conduct: "Exemplary conduct. Class prefect candidate.",
+                teacherNotes: "Amina is an exceptional student with stellar academic standing."
+            },
+            {
+                id: "SMM-2026-112",
+                adm: "SMM-2026-112",
+                name: "Brian Omondi",
+                grade: "PP2",
+                gender: "Male",
+                dob: "2019-08-19",
+                status: "Active",
+                parentName: "Mary Omondi",
+                parentPhone: "+254 705 222 111",
+                parentEmail: "m.omondi@gmail.com",
+                notes: "None",
+                attendance: 88,
+                feeTotal: 34000,
+                feePaid: 18000,
+                grades: {
+                    literacy: { mark: 52, level: "AE", remark: "Approaching expectations in letter formation." },
+                    numeracy: { mark: 60, level: "ME", remark: "Meets basic counting requirements." },
+                    environmental: { mark: 64, level: "ME", remark: "Identifies basic domestic animals." },
+                    hygiene: { mark: 70, level: "ME", remark: "Good hygiene habits." },
+                    creativeArts: { mark: 78, level: "ME", remark: "Enjoys singing and group games." }
+                },
+                conduct: "Quiet and well mannered.",
+                teacherNotes: "Needs extra practice at home with phonics sound cards."
+            }
+        ];
+
+        const ANNOUNCEMENTS = [
+            {
+                id: 1,
+                title: "Mid-Term Academic Progress Reports",
+                date: "October 14, 2026",
+                category: "Academic",
+                badgeColor: "bg-blue-100 text-blue-800",
+                content: "All parents are requested to review updated CBC competency reports on this portal. Physical consultation with class teachers will take place this Friday."
+            },
+            {
+                id: 2,
+                title: "Annual Sports Day & Cultural Fest",
+                date: "October 28, 2026",
+                category: "Event",
+                badgeColor: "bg-gold-100 text-gold-800",
+                content: "St. Monica Memorial School will host the annual sports day at the Mwihoko Grounds. All pupils should wear their respect house color kits."
+            },
+            {
+                id: 3,
+                title: "Term 1 School Fee Clearance Notice",
+                date: "October 05, 2026",
+                category: "Finance",
+                badgeColor: "bg-crimson-100 text-crimson-800",
+                content: "Parents with pending fee balances are encouraged to make settlements using our M-Pesa Paybill (522522) available via the parent fee tracker."
+            }
+        ];
+
+        // Global State Management
+        let appState = {
+            currentUser: null, // { role: 'teacher' | 'parent', name: '...', email: '...' }
+            currentView: 'dashboard',
+            selectedGradeFilter: 'All',
+            searchTerm: '',
+            activeChildId: 'SMM-2024-042', // Default child for parent view
+            students: []
+        };
+
+        function initStore() {
+            const savedStudents = localStorage.getItem('smm_portal_students');
+            if (savedStudents) {
+                try {
+                    appState.students = JSON.parse(savedStudents);
+                } catch (e) {
+                    appState.students = DEFAULT_STUDENTS;
+                }
+            } else {
+                appState.students = DEFAULT_STUDENTS;
+                saveToLocalStorage();
+            }
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('smm_portal_students', JSON.stringify(appState.students));
+            updateSyncIndicator();
+        }
+
+        function updateSyncIndicator() {
+            const ind = document.getElementById('save-status-indicator');
+            if (ind) {
+                ind.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> <span class="hidden sm:inline">Data Saved</span>`;
+            }
+        }
+
+        // CBC Evaluation Levels Helper
+        const CBC_LEVELS = {
+            "EE": { label: "Exceeding Expectations", badge: "bg-emerald-100 text-emerald-800 border-emerald-300", score: 4 },
+            "ME": { label: "Meeting Expectations", badge: "bg-blue-100 text-blue-800 border-blue-300", score: 3 },
+            "AE": { label: "Approaching Expectations", badge: "bg-amber-100 text-amber-800 border-amber-300", score: 2 },
+            "BE": { label: "Below Expectations", badge: "bg-rose-100 text-rose-800 border-rose-300", score: 1 }
+        };
+
+        function getCbcBadge(levelCode) {
+            const item = CBC_LEVELS[levelCode] || CBC_LEVELS["ME"];
+            return `<span class="px-2 py-0.5 rounded text-[11px] font-bold border ${item.badge}">${levelCode} - ${item.label}</span>`;
+        }
+
+        // --- AUTHENTICATION & ROLE SWITCHING ---
+        let selectedLoginRole = 'teacher';
+
+        function selectRole(role) {
+            selectedLoginRole = role;
+            const teacherBtn = document.getElementById('role-teacher-btn');
+            const parentBtn = document.getElementById('role-parent-btn');
+            const idInput = document.getElementById('login-id');
+
+            if (role === 'teacher') {
+                teacherBtn.className = 'py-1.5 text-xs font-semibold rounded-md transition bg-navy-900 text-white shadow-sm';
+                parentBtn.className = 'py-1.5 text-xs font-semibold rounded-md transition text-slate-600 hover:text-slate-900';
+                idInput.value = 'm.wanjiku@stmonica.ac.ke';
+            } else {
+                parentBtn.className = 'py-1.5 text-xs font-semibold rounded-md transition bg-crimson-700 text-white shadow-sm';
+                teacherBtn.className = 'py-1.5 text-xs font-semibold rounded-md transition text-slate-600 hover:text-slate-900';
+                idInput.value = 'd.mutua@gmail.com';
+            }
+        }
+
+        function quickLogin(role) {
+            selectRole(role);
+            if (role === 'teacher') {
+                appState.currentUser = {
+                    name: 'Madam Wanjiku',
+                    role: 'teacher',
+                    email: 'm.wanjiku@stmonica.ac.ke',
+                    initials: 'MW'
+                };
+            } else {
+                appState.currentUser = {
+                    name: 'David Mutua',
+                    role: 'parent',
+                    email: 'd.mutua@gmail.com',
+                    initials: 'DM'
+                };
+            }
+            launchPortal();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const idVal = document.getElementById('login-id').value;
+            
+            if (selectedLoginRole === 'teacher') {
+                appState.currentUser = {
+                    name: 'Madam Wanjiku',
+                    role: 'teacher',
+                    email: idVal || 'm.wanjiku@stmonica.ac.ke',
+                    initials: 'MW'
+                };
+            } else {
+                appState.currentUser = {
+                    name: 'David Mutua',
+                    role: 'parent',
+                    email: idVal || 'd.mutua@gmail.com',
+                    initials: 'DM'
+                };
+            }
+            launchPortal();
+        }
+
+        function switchRoleToggle() {
+            if (!appState.currentUser) return;
+            if (appState.currentUser.role === 'teacher') {
+                appState.currentUser = {
+                    name: 'David Mutua',
+                    role: 'parent',
+                    email: 'd.mutua@gmail.com',
+                    initials: 'DM'
+                };
+                showToast("Switched to Parent Mode", "info");
+            } else {
+                appState.currentUser = {
+                    name: 'Madam Wanjiku',
+                    role: 'teacher',
+                    email: 'm.wanjiku@stmonica.ac.ke',
+                    initials: 'MW'
+                };
+                showToast("Switched to Teacher / Admin Mode", "info");
+            }
+            appState.currentView = 'dashboard';
+            renderHeaderAndSidebar();
+            renderView();
+        }
+
+        function handleLogout() {
+            appState.currentUser = null;
+            document.getElementById('main-dashboard').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+            showToast("Signed out successfully", "info");
+        }
+
+        function showForgotPasswordModal() {
+            alert("Password Reset Simulation:\n\nPlease contact St. Monica IT Helpdesk at IT@stmonica.ac.ke or call +254 712 674 922 to reset credentials.");
+        }
+
+        function launchPortal() {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-dashboard').classList.remove('hidden');
+            appState.currentView = 'dashboard';
+            renderHeaderAndSidebar();
+            renderView();
+            showToast(`Welcome back, ${appState.currentUser.name}!`, "success");
+        }
+
+        function renderHeaderAndSidebar() {
+            const user = appState.currentUser;
+            document.getElementById('user-name').innerText = user.name;
+            document.getElementById('user-avatar').innerText = user.initials;
+            
+            const badge = document.getElementById('user-role-badge');
+            if (user.role === 'teacher') {
+                badge.innerText = 'Teacher / Admin';
+                badge.className = 'inline-block px-1.5 py-0.5 text-[10px] font-bold bg-gold-500 text-navy-900 rounded uppercase';
+            } else {
+                badge.innerText = 'Parent / Guardian';
+                badge.className = 'inline-block px-1.5 py-0.5 text-[10px] font-bold bg-crimson-600 text-white rounded uppercase';
+            }
+
+            // Build Navigation Menu
+            const navMenu = document.getElementById('nav-menu');
+            if (user.role === 'teacher') {
+                navMenu.innerHTML = `
+                    <button onclick="navigateView('dashboard')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'dashboard' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-chart-pie text-gold-400 w-5"></i>
+                        <span>Teacher Dashboard</span>
+                    </button>
+                    <button onclick="navigateView('sims')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'sims' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-users text-gold-400 w-5"></i>
+                        <span>Student Directory (SIMS)</span>
+                    </button>
+                    <button onclick="navigateView('gradebook')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'gradebook' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-book-bookmark text-gold-400 w-5"></i>
+                        <span>CBC Gradebook Matrix</span>
+                    </button>
+                    <button onclick="navigateView('attendance')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'attendance' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-clipboard-user text-gold-400 w-5"></i>
+                        <span>Attendance & Conduct Log</span>
+                    </button>
+                `;
+            } else {
+                navMenu.innerHTML = `
+                    <button onclick="navigateView('parent-overview')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'parent-overview' || appState.currentView === 'dashboard' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-child text-gold-400 w-5"></i>
+                        <span>Child Progress Summary</span>
+                    </button>
+                    <button onclick="navigateView('report-card')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'report-card' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-file-pdf text-gold-400 w-5"></i>
+                        <span>CBC Report Card & Print</span>
+                    </button>
+                    <button onclick="navigateView('fee-tracker')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'fee-tracker' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-receipt text-gold-400 w-5"></i>
+                        <span>Fee Balance & M-Pesa</span>
+                    </button>
+                    <button onclick="navigateView('noticeboard')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition ${appState.currentView === 'noticeboard' ? 'sidebar-item-active text-white' : 'text-slate-300 hover:bg-navy-800'}">
+                        <i class="fa-solid fa-bullhorn text-gold-400 w-5"></i>
+                        <span>School Noticeboard</span>
+                    </button>
+                `;
+            }
+        }
+
+        function navigateView(viewName) {
+            appState.currentView = viewName;
+            renderHeaderAndSidebar();
+            renderView();
+            // Close mobile menu if open
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar.classList.contains('hidden') && window.innerWidth < 768) {
+                sidebar.classList.add('hidden');
+            }
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+        // --- MAIN VIEW CONTROLLER ---
+        function renderView() {
+            const container = document.getElementById('content-area');
+            const pageTitle = document.getElementById('page-title');
+
+            if (appState.currentUser.role === 'teacher') {
+                switch (appState.currentView) {
+                    case 'sims':
+                        pageTitle.innerText = "Student Information Management (SIMS)";
+                        container.innerHTML = renderSimsView();
+                        break;
+                    case 'gradebook':
+                        pageTitle.innerText = "CBC Assessment & Gradebook Matrix";
+                        container.innerHTML = renderGradebookView();
+                        break;
+                    case 'attendance':
+                        pageTitle.innerText = "Daily Attendance & Conduct Logger";
+                        container.innerHTML = renderAttendanceView();
+                        break;
+                    case 'dashboard':
+                    default:
+                        pageTitle.innerText = "Teacher Overview Dashboard";
+                        container.innerHTML = renderTeacherDashboardView();
+                        break;
+                }
+            } else {
+                // Parent Views
+                switch (appState.currentView) {
+                    case 'report-card':
+                        pageTitle.innerText = "Termly CBC Assessment Report Card";
+                        container.innerHTML = renderParentReportCardView();
+                        break;
+                    case 'fee-tracker':
+                        pageTitle.innerText = "Fee Statement & Online Payment";
+                        container.innerHTML = renderParentFeeTrackerView();
+                        break;
+                    case 'noticeboard':
+                        pageTitle.innerText = "School Digital Noticeboard & Messages";
+                        container.innerHTML = renderNoticeboardView();
+                        break;
+                    case 'parent-overview':
+                    default:
+                        pageTitle.innerText = "Parent Portal - Children Dashboard";
+                        container.innerHTML = renderParentOverviewView();
+                        break;
+                }
+            }
+        }
+
+        function renderTeacherDashboardView() {
+            const totalStudents = appState.students.length;
+            const activeCount = appState.students.filter(s => s.status === 'Active').length;
+            
+            // Calculate overall class performance average score
+            let sumMarks = 0;
+            let countMarks = 0;
+            appState.students.forEach(s => {
+                Object.values(s.grades).forEach(g => {
+                    sumMarks += g.mark;
+                    countMarks++;
+                });
+            });
+            const classAverage = countMarks > 0 ? (sumMarks / countMarks).toFixed(1) : 0;
+
+            // Calculate pending total fees
+            const totalBalance = appState.students.reduce((acc, s) => acc + (s.feeTotal - s.feePaid), 0);
+
+            return `
+                <div class="space-y-6">
+                    <!-- Metric Cards Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Enrolled</p>
+                                <h3 class="text-2xl font-extrabold text-navy-900 mt-1">${totalStudents} Pupils</h3>
+                                <p class="text-[11px] text-emerald-600 font-medium mt-1"><i class="fa-solid fa-check-circle mr-1"></i>${activeCount} Active Status</p>
+                            </div>
+                            <div class="w-12 h-12 bg-navy-900/10 text-navy-900 rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Class CBC Average</p>
+                                <h3 class="text-2xl font-extrabold text-navy-900 mt-1">${classAverage}%</h3>
+                                <p class="text-[11px] text-blue-600 font-medium mt-1"><i class="fa-solid fa-award mr-1"></i>Meeting Expectations (ME)</p>
+                            </div>
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Avg Attendance</p>
+                                <h3 class="text-2xl font-extrabold text-navy-900 mt-1">94.8%</h3>
+                                <p class="text-[11px] text-slate-500 font-medium mt-1"><i class="fa-solid fa-calendar-day mr-1"></i>Term 1 Active Log</p>
+                            </div>
+                            <div class="w-12 h-12 bg-gold-100 text-gold-800 rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Fee Balances Summary</p>
+                                <h3 class="text-2xl font-extrabold text-crimson-700 mt-1">KES ${totalBalance.toLocaleString()}</h3>
+                                <p class="text-[11px] text-crimson-600 font-medium mt-1"><i class="fa-solid fa-clock mr-1"></i>Pending Clearances</p>
+                            </div>
+                            <div class="w-12 h-12 bg-crimson-100 text-crimson-800 rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions & Recent Roster -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Left 2 Cols: Recent Student Roster Quick View -->
+                        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-users text-navy-900"></i>
+                                    <span>Recent Student Records</span>
+                                </h3>
+                                <button onclick="navigateView('sims')" class="text-xs font-semibold text-crimson-700 hover:underline">View All Students &rarr;</button>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 uppercase font-semibold">
+                                        <tr>
+                                            <th class="p-3">Adm No</th>
+                                            <th class="p-3">Student Name</th>
+                                            <th class="p-3">Grade</th>
+                                            <th class="p-3">Parent Contact</th>
+                                            <th class="p-3 text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100">
+                                        ${appState.students.slice(0, 4).map(s => `
+                                            <tr class="hover:bg-slate-50">
+                                                <td class="p-3 font-mono text-slate-600 font-medium">${s.adm}</td>
+                                                <td class="p-3 font-bold text-slate-800">${s.name}</td>
+                                                <td class="p-3"><span class="px-2 py-0.5 rounded-md bg-slate-100 font-semibold text-slate-700">${s.grade}</span></td>
+                                                <td class="p-3 text-slate-600">${s.parentName} (${s.parentPhone})</td>
+                                                <td class="p-3 text-right">
+                                                    <button onclick="openEditStudentModal('${s.id}')" class="px-2.5 py-1 bg-navy-900 text-white rounded hover:bg-navy-800 text-[11px] font-medium">Edit</button>
+                                                </td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Right Col: Quick Class Announcements / Action Panel -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+                                    <i class="fa-solid fa-bolt text-gold-500"></i>
+                                    <span>Quick Admin Tasks</span>
+                                </h3>
+                                <div class="space-y-2">
+                                    <button onclick="openAddStudentModal()" class="w-full py-2.5 px-3 bg-navy-900 hover:bg-navy-800 text-white text-xs font-semibold rounded-xl flex items-center justify-between shadow-sm">
+                                        <span><i class="fa-solid fa-user-plus mr-2"></i>Register New Student</span>
+                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                    </button>
+                                    <button onclick="navigateView('gradebook')" class="w-full py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl flex items-center justify-between border border-slate-200">
+                                        <span><i class="fa-solid fa-pen-to-square mr-2 text-navy-900"></i>Enter CBC Term Grades</span>
+                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                    </button>
+                                    <button onclick="navigateView('attendance')" class="w-full py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl flex items-center justify-between border border-slate-200">
+                                        <span><i class="fa-solid fa-clipboard-user mr-2 text-navy-900"></i>Log Attendance & Conduct</span>
+                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-slate-100">
+                                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-900">
+                                    <p class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-info text-amber-600"></i> CBC Reminder</p>
+                                    <p class="text-[11px] mt-1 text-amber-800">Ensure narrative remarks are filled for all students before Term 1 grade publishing on Oct 16th.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- SIMS VIEW (Student Information Management System) ---
+        function renderSimsView() {
+            // Apply Search and Grade Filter
+            let filtered = appState.students.filter(s => {
+                const matchesGrade = appState.selectedGradeFilter === 'All' || s.grade === appState.selectedGradeFilter;
+                const matchesSearch = s.name.toLowerCase().includes(appState.searchTerm.toLowerCase()) || 
+                                      s.adm.toLowerCase().includes(appState.searchTerm.toLowerCase()) ||
+                                      s.parentName.toLowerCase().includes(appState.searchTerm.toLowerCase());
+                return matchesGrade && matchesSearch;
+            });
+
+            return `
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-5">
+                    <!-- Control Bar -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <!-- Search -->
+                            <div class="relative w-full sm:w-64">
+                                <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                                <input type="text" placeholder="Search name, adm, parent..." value="${appState.searchTerm}" oninput="handleSimsSearch(this.value)" class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-navy-900">
+                            </div>
+
+                            <!-- Grade Filter -->
+                            <select onchange="handleSimsGradeFilter(this.value)" class="px-3 py-2 border border-slate-300 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-navy-900 bg-white font-medium text-slate-700">
+                                <option value="All" ${appState.selectedGradeFilter === 'All' ? 'selected' : ''}>All Grades / Classes</option>
+                                <option value="Daycare" ${appState.selectedGradeFilter === 'Daycare' ? 'selected' : ''}>Daycare</option>
+                                <option value="Playgroup" ${appState.selectedGradeFilter === 'Playgroup' ? 'selected' : ''}>Playgroup</option>
+                                <option value="PP1" ${appState.selectedGradeFilter === 'PP1' ? 'selected' : ''}>PP1 (Pre-Primary 1)</option>
+                                <option value="PP2" ${appState.selectedGradeFilter === 'PP2' ? 'selected' : ''}>PP2 (Pre-Primary 2)</option>
+                                <option value="Grade 1" ${appState.selectedGradeFilter === 'Grade 1' ? 'selected' : ''}>Grade 1</option>
+                                <option value="Grade 2" ${appState.selectedGradeFilter === 'Grade 2' ? 'selected' : ''}>Grade 2</option>
+                                <option value="Grade 3" ${appState.selectedGradeFilter === 'Grade 3' ? 'selected' : ''}>Grade 3</option>
+                            </select>
+                        </div>
+
+                        <button onclick="openAddStudentModal()" class="py-2 px-4 bg-navy-900 hover:bg-navy-800 text-white rounded-xl text-xs font-semibold shadow flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Add New Student</span>
+                        </button>
+                    </div>
+
+                    <!-- Students Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 border-b border-slate-200 uppercase font-semibold">
+                                <tr>
+                                    <th class="p-3">Adm No</th>
+                                    <th class="p-3">Student Name</th>
+                                    <th class="p-3">Class Level</th>
+                                    <th class="p-3">Gender</th>
+                                    <th class="p-3">Parent / Guardian</th>
+                                    <th class="p-3">Phone</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                ${filtered.length > 0 ? filtered.map(s => `
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="p-3 font-mono font-bold text-navy-900">${s.adm}</td>
+                                        <td class="p-3 font-bold text-slate-800">${s.name}</td>
+                                        <td class="p-3"><span class="px-2 py-0.5 rounded bg-blue-50 text-blue-800 font-semibold text-[11px] border border-blue-200">${s.grade}</span></td>
+                                        <td class="p-3 text-slate-600">${s.gender}</td>
+                                        <td class="p-3 font-medium text-slate-700">${s.parentName}</td>
+                                        <td class="p-3 font-mono text-slate-600">${s.parentPhone}</td>
+                                        <td class="p-3">
+                                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${s.status === 'Active' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'}">
+                                                ${s.status}
+                                            </span>
+                                        </td>
+                                        <td class="p-3 text-right space-x-1">
+                                            <button onclick="openEditStudentModal('${s.id}')" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-[11px] font-medium border border-slate-200" title="Edit Info">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </button>
+                                            <button onclick="confirmDeleteStudent('${s.id}')" class="px-2 py-1 bg-crimson-100 hover:bg-crimson-200 text-crimson-800 rounded text-[11px] font-medium" title="Delete Student">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `).join('') : `
+                                    <tr>
+                                        <td colspan="8" class="text-center py-8 text-slate-400">No student records found matching filter criteria.</td>
+                                    </tr>
+                                `}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleSimsSearch(val) {
+            appState.searchTerm = val;
+            renderView();
+        }
+
+        function handleSimsGradeFilter(val) {
+            appState.selectedGradeFilter = val;
+            renderView();
+        }
+
+        // --- GRADEBOOK & CBC ASSESSMENT MATRIX VIEW ---
+        function renderGradebookView() {
+            let filtered = appState.students.filter(s => {
+                return appState.selectedGradeFilter === 'All' || s.grade === appState.selectedGradeFilter;
+            });
+
+            return `
+                <div class="space-y-6">
+                    <!-- Gradebook Header Controls -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex items-center space-x-3">
+                            <select onchange="handleSimsGradeFilter(this.value)" class="px-3 py-2 border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 bg-white">
+                                <option value="All" ${appState.selectedGradeFilter === 'All' ? 'selected' : ''}>All Classes</option>
+                                <option value="Grade 2" ${appState.selectedGradeFilter === 'Grade 2' ? 'selected' : ''}>Grade 2 (Class)</option>
+                                <option value="PP1" ${appState.selectedGradeFilter === 'PP1' ? 'selected' : ''}>PP1 Class</option>
+                                <option value="Grade 3" ${appState.selectedGradeFilter === 'Grade 3' ? 'selected' : ''}>Grade 3 Class</option>
+                            </select>
+                            <span class="text-xs text-slate-500 font-medium">Term: <strong>Term 1, 2026</strong></span>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <button onclick="saveAllGradebookEdits()" class="px-4 py-2 bg-navy-900 hover:bg-navy-800 text-white text-xs font-semibold rounded-xl shadow flex items-center gap-2">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                <span>Save & Publish Grades</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Interactive CBC Assessment Entry Matrix -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-navy-900 text-white uppercase text-[11px] font-semibold tracking-wider">
+                                    <tr>
+                                        <th class="p-3 w-48">Student Name</th>
+                                        <th class="p-3 w-40">Literacy / Lang</th>
+                                        <th class="p-3 w-40">Numeracy / Math</th>
+                                        <th class="p-3 w-40">Environmental</th>
+                                        <th class="p-3 w-40">Hygiene & Nut.</th>
+                                        <th class="p-3 w-40">Creative Arts</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    ${filtered.map(s => `
+                                        <tr class="hover:bg-slate-50">
+                                            <td class="p-3 font-bold text-slate-800 border-r border-slate-200 bg-slate-50/50">
+                                                <div>${s.name}</div>
+                                                <div class="text-[10px] text-slate-500 font-mono">${s.adm} • ${s.grade}</div>
+                                            </td>
+
+                                            <!-- Literacy -->
+                                            <td class="p-2 border-r border-slate-100">
+                                                <div class="space-y-1">
+                                                    <input type="number" max="100" min="0" value="${s.grades.literacy.mark}" 
+                                                        onchange="updateGradeScore('${s.id}', 'literacy', 'mark', this.value)"
+                                                        class="w-full px-2 py-1 border border-slate-300 rounded font-bold text-xs text-center focus:ring-1 focus:ring-navy-900">
+                                                    <select onchange="updateGradeScore('${s.id}', 'literacy', 'level', this.value)" class="w-full p-1 border border-slate-200 rounded text-[10px] bg-slate-50">
+                                                        <option value="EE" ${s.grades.literacy.level === 'EE' ? 'selected' : ''}>EE (Exceeding)</option>
+                                                        <option value="ME" ${s.grades.literacy.level === 'ME' ? 'selected' : ''}>ME (Meeting)</option>
+                                                        <option value="AE" ${s.grades.literacy.level === 'AE' ? 'selected' : ''}>AE (Approaching)</option>
+                                                        <option value="BE" ${s.grades.literacy.level === 'BE' ? 'selected' : ''}>BE (Below)</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+
+                                            <!-- Numeracy -->
+                                            <td class="p-2 border-r border-slate-100">
+                                                <div class="space-y-1">
+                                                    <input type="number" max="100" min="0" value="${s.grades.numeracy.mark}" 
+                                                        onchange="updateGradeScore('${s.id}', 'numeracy', 'mark', this.value)"
+                                                        class="w-full px-2 py-1 border border-slate-300 rounded font-bold text-xs text-center focus:ring-1 focus:ring-navy-900">
+                                                    <select onchange="updateGradeScore('${s.id}', 'numeracy', 'level', this.value)" class="w-full p-1 border border-slate-200 rounded text-[10px] bg-slate-50">
+                                                        <option value="EE" ${s.grades.numeracy.level === 'EE' ? 'selected' : ''}>EE (Exceeding)</option>
+                                                        <option value="ME" ${s.grades.numeracy.level === 'ME' ? 'selected' : ''}>ME (Meeting)</option>
+                                                        <option value="AE" ${s.grades.numeracy.level === 'AE' ? 'selected' : ''}>AE (Approaching)</option>
+                                                        <option value="BE" ${s.grades.numeracy.level === 'BE' ? 'selected' : ''}>BE (Below)</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+
+                                            <!-- Environmental -->
+                                            <td class="p-2 border-r border-slate-100">
+                                                <div class="space-y-1">
+                                                    <input type="number" max="100" min="0" value="${s.grades.environmental.mark}" 
+                                                        onchange="updateGradeScore('${s.id}', 'environmental', 'mark', this.value)"
+                                                        class="w-full px-2 py-1 border border-slate-300 rounded font-bold text-xs text-center focus:ring-1 focus:ring-navy-900">
+                                                    <select onchange="updateGradeScore('${s.id}', 'environmental', 'level', this.value)" class="w-full p-1 border border-slate-200 rounded text-[10px] bg-slate-50">
+                                                        <option value="EE" ${s.grades.environmental.level === 'EE' ? 'selected' : ''}>EE (Exceeding)</option>
+                                                        <option value="ME" ${s.grades.environmental.level === 'ME' ? 'selected' : ''}>ME (Meeting)</option>
+                                                        <option value="AE" ${s.grades.environmental.level === 'AE' ? 'selected' : ''}>AE (Approaching)</option>
+                                                        <option value="BE" ${s.grades.environmental.level === 'BE' ? 'selected' : ''}>BE (Below)</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+
+                                            <!-- Hygiene -->
+                                            <td class="p-2 border-r border-slate-100">
+                                                <div class="space-y-1">
+                                                    <input type="number" max="100" min="0" value="${s.grades.hygiene.mark}" 
+                                                        onchange="updateGradeScore('${s.id}', 'hygiene', 'mark', this.value)"
+                                                        class="w-full px-2 py-1 border border-slate-300 rounded font-bold text-xs text-center focus:ring-1 focus:ring-navy-900">
+                                                    <select onchange="updateGradeScore('${s.id}', 'hygiene', 'level', this.value)" class="w-full p-1 border border-slate-200 rounded text-[10px] bg-slate-50">
+                                                        <option value="EE" ${s.grades.hygiene.level === 'EE' ? 'selected' : ''}>EE (Exceeding)</option>
+                                                        <option value="ME" ${s.grades.hygiene.level === 'ME' ? 'selected' : ''}>ME (Meeting)</option>
+                                                        <option value="AE" ${s.grades.hygiene.level === 'AE' ? 'selected' : ''}>AE (Approaching)</option>
+                                                        <option value="BE" ${s.grades.hygiene.level === 'BE' ? 'selected' : ''}>BE (Below)</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+
+                                            <!-- Creative Arts -->
+                                            <td class="p-2">
+                                                <div class="space-y-1">
+                                                    <input type="number" max="100" min="0" value="${s.grades.creativeArts.mark}" 
+                                                        onchange="updateGradeScore('${s.id}', 'creativeArts', 'mark', this.value)"
+                                                        class="w-full px-2 py-1 border border-slate-300 rounded font-bold text-xs text-center focus:ring-1 focus:ring-navy-900">
+                                                    <select onchange="updateGradeScore('${s.id}', 'creativeArts', 'level', this.value)" class="w-full p-1 border border-slate-200 rounded text-[10px] bg-slate-50">
+                                                        <option value="EE" ${s.grades.creativeArts.level === 'EE' ? 'selected' : ''}>EE (Exceeding)</option>
+                                                        <option value="ME" ${s.grades.creativeArts.level === 'ME' ? 'selected' : ''}>ME (Meeting)</option>
+                                                        <option value="AE" ${s.grades.creativeArts.level === 'AE' ? 'selected' : ''}>AE (Approaching)</option>
+                                                        <option value="BE" ${s.grades.creativeArts.level === 'BE' ? 'selected' : ''}>BE (Below)</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateGradeScore(studentId, subject, field, value) {
+            const student = appState.students.find(s => s.id === studentId);
+            if (student && student.grades[subject]) {
+                if (field === 'mark') {
+                    student.grades[subject].mark = parseInt(value) || 0;
+                } else if (field === 'level') {
+                    student.grades[subject].level = value;
+                }
+                saveToLocalStorage();
+            }
+        }
+
+        function saveAllGradebookEdits() {
+            saveToLocalStorage();
+            showToast("CBC Assessment Grades saved and published to Parent Portal!", "success");
+        }
+
+        // --- ATTENDANCE & CONDUCT VIEW ---
+        function renderAttendanceView() {
+            return `
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+                    <div class="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-sm">Class Daily Attendance & Behavior Tracker</h3>
+                            <p class="text-xs text-slate-500">Log pupil attendance percentage and behavioral comments</p>
+                        </div>
+                        <button onclick="saveToLocalStorage(); showToast('Attendance logs updated!', 'success')" class="px-4 py-2 bg-navy-900 text-white rounded-xl text-xs font-semibold shadow">
+                            Save Log Entries
+                        </button>
+                    </div>
+
+                    <div class="space-y-4">
+                        ${appState.students.map(s => `
+                            <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div class="w-full md:w-1/3">
+                                    <h4 class="font-bold text-slate-800 text-sm">${s.name}</h4>
+                                    <p class="text-xs text-slate-500 font-mono">${s.adm} • ${s.grade}</p>
+                                </div>
+
+                                <div class="w-full md:w-1/3 flex items-center space-x-3">
+                                    <label class="text-xs font-semibold text-slate-600 whitespace-nowrap">Attendance %:</label>
+                                    <input type="number" min="0" max="100" value="${s.attendance}" 
+                                        onchange="updateStudentAttendance('${s.id}', this.value)"
+                                        class="w-20 px-2 py-1 border border-slate-300 rounded font-bold text-xs text-center">
+                                </div>
+
+                                <div class="w-full md:w-1/3">
+                                    <label class="text-xs font-semibold text-slate-600">Conduct / Behavioral Remarks:</label>
+                                    <input type="text" value="${s.conduct || ''}" 
+                                        onchange="updateStudentConduct('${s.id}', this.value)"
+                                        placeholder="e.g. Well behaved, active in discussions..."
+                                        class="w-full mt-1 px-3 py-1.5 border border-slate-300 rounded text-xs focus:ring-1 focus:ring-navy-900">
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateStudentAttendance(id, val) {
+            const student = appState.students.find(s => s.id === id);
+            if (student) {
+                student.attendance = parseInt(val) || 0;
+                saveToLocalStorage();
+            }
+        }
+
+        function updateStudentConduct(id, val) {
+            const student = appState.students.find(s => s.id === id);
+            if (student) {
+                student.conduct = val;
+                saveToLocalStorage();
+            }
+        }
+
+        function renderParentOverviewView() {
+            // Find children linked to this parent (e.g., David Mutua has Liam and Chloe)
+            const parentChildren = appState.students.filter(s => s.parentName.toLowerCase().includes("mutua") || s.parentEmail.toLowerCase() === appState.currentUser.email.toLowerCase());
+            const displayChildren = parentChildren.length > 0 ? parentChildren : [appState.students[0]];
+
+            const activeChild = displayChildren.find(c => c.id === appState.activeChildId) || displayChildren[0];
+
+            return `
+                <div class="space-y-6">
+                    <!-- Child Selection Tabs (If Multiple Children) -->
+                    <div class="bg-white p-2 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase px-3">Select Child:</span>
+                        <div class="flex space-x-2 overflow-x-auto">
+                            ${displayChildren.map(c => `
+                                <button onclick="setActiveChild('${c.id}')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${c.id === activeChild.id ? 'bg-navy-900 text-white shadow' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                                    <i class="fa-solid fa-child"></i>
+                                    <span>${c.name} (${c.grade})</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Selected Child Summary Banner Card -->
+                    <div class="bg-gradient-to-r from-navy-900 via-navy-800 to-navy-950 rounded-2xl p-6 text-white shadow-lg border border-gold-500/30 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 rounded-2xl bg-white text-navy-900 font-extrabold text-2xl flex items-center justify-center border-2 border-gold-400 shadow">
+                                ${activeChild.name.split(' ').map(n=>n[0]).join('')}
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <h2 class="text-xl font-bold">${activeChild.name}</h2>
+                                    <span class="px-2 py-0.5 bg-gold-500 text-navy-950 font-extrabold text-[10px] rounded uppercase">${activeChild.grade}</span>
+                                </div>
+                                <p class="text-xs text-slate-300 mt-1 font-mono">Admission No: ${activeChild.adm} • Term 1, 2026</p>
+                                <p class="text-xs text-slate-300 mt-0.5">Class Teacher: Madam Wanjiku</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button onclick="navigateView('report-card')" class="px-4 py-2.5 bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold rounded-xl text-xs shadow transition flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                <span>View Term Report Card</span>
+                            </button>
+                            <button onclick="navigateView('fee-tracker')" class="px-4 py-2.5 bg-crimson-700 hover:bg-crimson-800 text-white font-bold rounded-xl text-xs shadow transition flex items-center gap-2">
+                                <i class="fa-solid fa-credit-card"></i>
+                                <span>Pay Fees (M-Pesa)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- CBC Learning Area Summary Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-xs uppercase">Literacy & Language</h4>
+                                ${getCbcBadge(activeChild.grades.literacy.level)}
+                            </div>
+                            <p class="text-2xl font-extrabold text-navy-900">${activeChild.grades.literacy.mark}%</p>
+                            <p class="text-xs text-slate-600 italic bg-slate-50 p-2 rounded border border-slate-100">"${activeChild.grades.literacy.remark}"</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-xs uppercase">Mathematical / Numeracy</h4>
+                                ${getCbcBadge(activeChild.grades.numeracy.level)}
+                            </div>
+                            <p class="text-2xl font-extrabold text-navy-900">${activeChild.grades.numeracy.mark}%</p>
+                            <p class="text-xs text-slate-600 italic bg-slate-50 p-2 rounded border border-slate-100">"${activeChild.grades.numeracy.remark}"</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-xs uppercase">Environmental Activities</h4>
+                                ${getCbcBadge(activeChild.grades.environmental.level)}
+                            </div>
+                            <p class="text-2xl font-extrabold text-navy-900">${activeChild.grades.environmental.mark}%</p>
+                            <p class="text-xs text-slate-600 italic bg-slate-50 p-2 rounded border border-slate-100">"${activeChild.grades.environmental.remark}"</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-xs uppercase">Hygiene & Nutrition</h4>
+                                ${getCbcBadge(activeChild.grades.hygiene.level)}
+                            </div>
+                            <p class="text-2xl font-extrabold text-navy-900">${activeChild.grades.hygiene.mark}%</p>
+                            <p class="text-xs text-slate-600 italic bg-slate-50 p-2 rounded border border-slate-100">"${activeChild.grades.hygiene.remark}"</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-slate-800 text-xs uppercase">Creative & Movement Arts</h4>
+                                ${getCbcBadge(activeChild.grades.creativeArts.level)}
+                            </div>
+                            <p class="text-2xl font-extrabold text-navy-900">${activeChild.grades.creativeArts.mark}%</p>
+                            <p class="text-xs text-slate-600 italic bg-slate-50 p-2 rounded border border-slate-100">"${activeChild.grades.creativeArts.remark}"</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                            <h4 class="font-bold text-slate-800 text-xs uppercase">Attendance Rate</h4>
+                            <p class="text-2xl font-extrabold text-emerald-600">${activeChild.attendance}%</p>
+                            <p class="text-xs text-slate-500">Regular attendance record maintained throughout the term.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function setActiveChild(childId) {
+            appState.activeChildId = childId;
+            renderView();
+        }
+
+        function renderParentReportCardView() {
+            const child = appState.students.find(s => s.id === appState.activeChildId) || appState.students[0];
+
+            return `
+                <div class="space-y-4">
+                    <!-- Action Toolbar -->
+                    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between no-print">
+                        <span class="text-xs font-semibold text-slate-600">Official CBC Progress Report • ${child.name} (${child.grade})</span>
+                        <button onclick="window.print()" class="px-5 py-2.5 bg-navy-900 hover:bg-navy-800 text-white rounded-xl text-xs font-bold shadow flex items-center gap-2">
+                            <i class="fa-solid fa-print"></i>
+                            <span>Print / Download PDF Report</span>
+                        </button>
+                    </div>
+
+                    <!-- Printable Printable Document Box -->
+                    <div id="printable-report-card" class="bg-white p-8 rounded-2xl border border-slate-300 shadow-md max-w-4xl mx-auto space-y-6 text-slate-800">
+                        
+                        <!-- Official Letterhead Header -->
+                        <div class="border-b-4 border-navy-900 pb-4 text-center space-y-1 relative">
+                            <div class="flex items-center justify-center space-x-3 mb-2">
+                                <div class="w-14 h-14 bg-navy-900 text-white rounded-full flex items-center justify-center font-bold text-2xl border-2 border-gold-400">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                            </div>
+                            <h1 class="text-2xl font-extrabold text-navy-900 tracking-wider uppercase">ST. MONICA MEMORIAL SCHOOL</h1>
+                            <p class="text-xs font-bold text-crimson-700 uppercase tracking-widest">Motto: 'Beyond Learning'</p>
+                            <p class="text-xs text-slate-600">160 Stage Mwihoko • P.O. Box 45000-00100 Nairobi • Tel: +254 712 674 922</p>
+                            <p class="text-xs font-semibold text-navy-900 underline mt-1">TERM 1 CBC COMPETENCY ASSESSMENT PROGRESS REPORT (YEAR 2026)</p>
+                        </div>
+
+                        <!-- Student Bio Info Grid -->
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                            <div>
+                                <span class="text-slate-500 uppercase font-semibold text-[10px]">Pupil Full Name:</span>
+                                <p class="font-bold text-slate-900">${child.name}</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 uppercase font-semibold text-[10px]">Admission No:</span>
+                                <p class="font-bold text-slate-900 font-mono">${child.adm}</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 uppercase font-semibold text-[10px]">Grade / Class Level:</span>
+                                <p class="font-bold text-slate-900">${child.grade}</p>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 uppercase font-semibold text-[10px]">Attendance Rate:</span>
+                                <p class="font-bold text-slate-900">${child.attendance}%</p>
+                            </div>
+                        </div>
+
+                        <!-- CBC Performance Table -->
+                        <div>
+                            <h3 class="text-xs font-bold text-navy-900 uppercase tracking-wider mb-2">Key Assessment Learning Areas</h3>
+                            <table class="w-full text-left text-xs border border-slate-300 divide-y divide-slate-300">
+                                <thead class="bg-slate-100 text-slate-700 uppercase text-[10px] font-bold">
+                                    <tr>
+                                        <th class="p-2.5 border-r border-slate-300">Learning Area / Subject</th>
+                                        <th class="p-2.5 border-r border-slate-300 text-center w-24">Mark (%)</th>
+                                        <th class="p-2.5 border-r border-slate-300 w-48">CBC Rubric Level</th>
+                                        <th class="p-2.5">Facilitator / Teacher Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 font-medium">
+                                    <tr>
+                                        <td class="p-2.5 border-r border-slate-300 font-bold">Literacy & Language Skills</td>
+                                        <td class="p-2.5 border-r border-slate-300 text-center font-bold">${child.grades.literacy.mark}%</td>
+                                        <td class="p-2.5 border-r border-slate-300">${getCbcBadge(child.grades.literacy.level)}</td>
+                                        <td class="p-2.5 text-slate-600">${child.grades.literacy.remark}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 border-r border-slate-300 font-bold">Mathematical & Numeracy Skills</td>
+                                        <td class="p-2.5 border-r border-slate-300 text-center font-bold">${child.grades.numeracy.mark}%</td>
+                                        <td class="p-2.5 border-r border-slate-300">${getCbcBadge(child.grades.numeracy.level)}</td>
+                                        <td class="p-2.5 text-slate-600">${child.grades.numeracy.remark}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 border-r border-slate-300 font-bold">Environmental Activities</td>
+                                        <td class="p-2.5 border-r border-slate-300 text-center font-bold">${child.grades.environmental.mark}%</td>
+                                        <td class="p-2.5 border-r border-slate-300">${getCbcBadge(child.grades.environmental.level)}</td>
+                                        <td class="p-2.5 text-slate-600">${child.grades.environmental.remark}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 border-r border-slate-300 font-bold">Hygiene & Nutrition</td>
+                                        <td class="p-2.5 border-r border-slate-300 text-center font-bold">${child.grades.hygiene.mark}%</td>
+                                        <td class="p-2.5 border-r border-slate-300">${getCbcBadge(child.grades.hygiene.level)}</td>
+                                        <td class="p-2.5 text-slate-600">${child.grades.hygiene.remark}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 border-r border-slate-300 font-bold">Creative & Movement Arts</td>
+                                        <td class="p-2.5 border-r border-slate-300 text-center font-bold">${child.grades.creativeArts.mark}%</td>
+                                        <td class="p-2.5 border-r border-slate-300">${getCbcBadge(child.grades.creativeArts.level)}</td>
+                                        <td class="p-2.5 text-slate-600">${child.grades.creativeArts.remark}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- General Remarks & Sign-off -->
+                        <div class="space-y-3 pt-2 text-xs">
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                <span class="font-bold text-navy-900 block mb-1">Class Teacher's General Remarks:</span>
+                                <p class="text-slate-700 italic">"${child.teacherNotes || child.conduct}"</p>
+                            </div>
+
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                <span class="font-bold text-navy-900 block mb-1">Headteacher's Endorsement:</span>
+                                <p class="text-slate-700">A commendable performance overall. Keep up the enthusiasm in academic and co-curricular endeavors.</p>
+                            </div>
+                        </div>
+
+                        <!-- Signatures Footer -->
+                        <div class="pt-8 border-t border-slate-300 grid grid-cols-2 gap-8 text-xs">
+                            <div>
+                                <p class="font-bold text-slate-800">Class Teacher Signature: __________________</p>
+                                <p class="text-slate-500 text-[10px] mt-1">Madam Wanjiku (St. Monica Memorial)</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-slate-800">School Official Stamp & Seal</p>
+                                <div class="mt-2 text-[10px] text-slate-400 italic">Verified Electronic Copy</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- PARENT FEE TRACKER & M-PESA PAYMENT VIEW ---
+        function renderParentFeeTrackerView() {
+            const child = appState.students.find(s => s.id === appState.activeChildId) || appState.students[0];
+            const balance = child.feeTotal - child.feePaid;
+
+            return `
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Total Term Fees</span>
+                            <h3 class="text-2xl font-extrabold text-navy-900 mt-1">KES ${child.feeTotal.toLocaleString()}</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Term 1 2026 Academic Fee</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                            <span class="text-xs font-semibold text-slate-500 uppercase">Amount Paid</span>
+                            <h3 class="text-2xl font-extrabold text-emerald-600 mt-1">KES ${child.feePaid.toLocaleString()}</h3>
+                            <p class="text-[11px] text-emerald-700 mt-1 font-medium"><i class="fa-solid fa-circle-check mr-1"></i>Cleared Balance Portion</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-semibold text-slate-500 uppercase">Outstanding Balance</span>
+                                <h3 class="text-2xl font-extrabold ${balance > 0 ? 'text-crimson-700' : 'text-emerald-600'} mt-1">KES ${balance.toLocaleString()}</h3>
+                            </div>
+                            ${balance > 0 ? `
+                                <button onclick="openMpesaModal(${balance}, '${child.adm}')" class="mt-3 w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs shadow flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                    <span>Pay Outstanding via M-Pesa</span>
+                                </button>
+                            ` : `
+                                <span class="text-xs font-bold text-emerald-600 mt-2 block"><i class="fa-solid fa-check"></i> Fee Fully Cleared</span>
+                            `}
+                        </div>
+                    </div>
+
+                    <!-- Payment History Table -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+                        <h3 class="font-bold text-slate-800 text-sm">Term 1 Payment Transactions History</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-slate-50 text-slate-500 uppercase border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-3">Transaction Ref</th>
+                                        <th class="p-3">Date</th>
+                                        <th class="p-3">Payment Channel</th>
+                                        <th class="p-3">Amount Paid</th>
+                                        <th class="p-3">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 font-medium">
+                                    <tr>
+                                        <td class="p-3 font-mono font-bold text-navy-900">SMM-MP-98421</td>
+                                        <td class="p-3 text-slate-600">Jan 10, 2026</td>
+                                        <td class="p-3">M-Pesa Express</td>
+                                        <td class="p-3 font-bold text-slate-800">KES 24,000</td>
+                                        <td class="p-3"><span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold text-[10px]">SUCCESS</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- NOTICEBOARD VIEW ---
+        function renderNoticeboardView() {
+            return `
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-base">St. Monica Digital Noticeboard</h3>
+                        <p class="text-xs text-slate-500">Official circulars, sports day schedules, and parent announcements</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        ${ANNOUNCEMENTS.map(a => `
+                            <div class="p-4 rounded-xl border border-slate-200 hover:border-slate-300 transition space-y-2 bg-slate-50/50">
+                                <div class="flex items-center justify-between">
+                                    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold ${a.badgeColor}">${a.category}</span>
+                                    <span class="text-xs text-slate-400 font-medium">${a.date}</span>
+                                </div>
+                                <h4 class="font-bold text-slate-900 text-sm">${a.title}</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed">${a.content}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function openAddStudentModal() {
+            document.getElementById('student-modal-title').innerHTML = `<i class="fa-solid fa-user-plus text-gold-400"></i> Add New Student`;
+            document.getElementById('student-form-id').value = '';
+            document.getElementById('student-form').reset();
+            document.getElementById('student-modal').classList.remove('hidden');
+        }
+
+        function openEditStudentModal(id) {
+            const student = appState.students.find(s => s.id === id);
+            if (!student) return;
+
+            document.getElementById('student-modal-title').innerHTML = `<i class="fa-solid fa-user-pen text-gold-400"></i> Edit Student Information`;
+            document.getElementById('student-form-id').value = student.id;
+            document.getElementById('form-adm').value = student.adm;
+            document.getElementById('form-name').value = student.name;
+            document.getElementById('form-grade').value = student.grade;
+            document.getElementById('form-gender').value = student.gender;
+            document.getElementById('form-dob').value = student.dob || '';
+            document.getElementById('form-status').value = student.status;
+            document.getElementById('form-parent-name').value = student.parentName;
+            document.getElementById('form-parent-phone').value = student.parentPhone;
+            document.getElementById('form-parent-email').value = student.parentEmail;
+            document.getElementById('form-notes').value = student.notes || '';
+
+            document.getElementById('student-modal').classList.remove('hidden');
+        }
+
+        function closeStudentModal() {
+            document.getElementById('student-modal').classList.add('hidden');
+        }
+
+        function saveStudentForm(e) {
+            e.preventDefault();
+            const id = document.getElementById('student-form-id').value;
+            const adm = document.getElementById('form-adm').value;
+            const name = document.getElementById('form-name').value;
+            const grade = document.getElementById('form-grade').value;
+            const gender = document.getElementById('form-gender').value;
+            const dob = document.getElementById('form-dob').value;
+            const status = document.getElementById('form-status').value;
+            const parentName = document.getElementById('form-parent-name').value;
+            const parentPhone = document.getElementById('form-parent-phone').value;
+            const parentEmail = document.getElementById('form-parent-email').value;
+            const notes = document.getElementById('form-notes').value;
+
+            if (id) {
+                // Edit existing
+                const student = appState.students.find(s => s.id === id);
+                if (student) {
+                    student.adm = adm;
+                    student.name = name;
+                    student.grade = grade;
+                    student.gender = gender;
+                    student.dob = dob;
+                    student.status = status;
+                    student.parentName = parentName;
+                    student.parentPhone = parentPhone;
+                    student.parentEmail = parentEmail;
+                    student.notes = notes;
+                }
+                showToast("Student record updated successfully!", "success");
+            } else {
+                // Add new student
+                const newStudent = {
+                    id: adm || 'SMM-' + Date.now(),
+                    adm: adm,
+                    name: name,
+                    grade: grade,
+                    gender: gender,
+                    dob: dob,
+                    status: status,
+                    parentName: parentName,
+                    parentPhone: parentPhone,
+                    parentEmail: parentEmail,
+                    notes: notes,
+                    attendance: 100,
+                    feeTotal: 38500,
+                    feePaid: 0,
+                    grades: {
+                        literacy: { mark: 70, level: "ME", remark: "Satisfactory progress." },
+                        numeracy: { mark: 70, level: "ME", remark: "Good understanding." },
+                        environmental: { mark: 70, level: "ME", remark: "Actively participates." },
+                        hygiene: { mark: 70, level: "ME", remark: "Neat and attentive." },
+                        creativeArts: { mark: 70, level: "ME", remark: "Enthusiastic." }
+                    },
+                    conduct: "Good pupil behavior."
+                };
+                appState.students.unshift(newStudent);
+                showToast("New student registered successfully!", "success");
+            }
+
+            saveToLocalStorage();
+            closeStudentModal();
+            renderView();
+        }
+
+        function confirmDeleteStudent(id) {
+            if (confirm("Are you sure you want to remove this student record from St. Monica Portal?")) {
+                appState.students = appState.students.filter(s => s.id !== id);
+                saveToLocalStorage();
+                renderView();
+                showToast("Student record removed.", "info");
+            }
+        }
+
+        // --- M-PESA PAYMENT SIMULATOR MODAL ---
+        function openMpesaModal(balance, adm) {
+            document.getElementById('mpesa-modal-balance').innerText = balance.toLocaleString();
+            document.getElementById('mpesa-modal-adm').innerText = adm;
+            document.getElementById('mpesa-amount').value = balance;
+            document.getElementById('mpesa-status-message').classList.add('hidden');
+            document.getElementById('mpesa-modal').classList.remove('hidden');
+        }
+
+        function closeMpesaModal() {
+            document.getElementById('mpesa-modal').classList.add('hidden');
+        }
+
+        function processMpesaPayment() {
+            const phone = document.getElementById('mpesa-phone').value;
+            const amt = parseInt(document.getElementById('mpesa-amount').value) || 0;
+            const msgBox = document.getElementById('mpesa-status-message');
+            const submitBtn = document.getElementById('mpesa-submit-btn');
+
+            if (!phone || amt <= 0) {
+                alert("Please enter a valid phone number and payment amount.");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-xs"></i> <span>Sending STK Prompt...</span>`;
+
+            setTimeout(() => {
+                msgBox.className = "text-xs p-3 rounded-lg text-center font-medium bg-emerald-100 text-emerald-800 border border-emerald-300 block";
+                msgBox.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> STK Prompt Sent! Enter M-Pesa PIN on handset <strong>${phone}</strong> to authorize KES ${amt.toLocaleString()}.`;
+
+                setTimeout(() => {
+                    // Update child fee record
+                    const child = appState.students.find(s => s.id === appState.activeChildId) || appState.students[0];
+                    if (child) {
+                        child.feePaid += amt;
+                        saveToLocalStorage();
+                    }
+
+                    closeMpesaModal();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-lock text-xs"></i> <span>Send STK Push Prompt</span>`;
+                    showToast(`Payment of KES ${amt.toLocaleString()} received via M-Pesa!`, "success");
+                    renderView();
+                }, 2500);
+
+            }, 1500);
+        }
+
+        function showToast(text, type = 'success') {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastText.innerText = text;
+
+            if (type === 'success') {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-check text-gold-400"></i>`;
+            } else if (type === 'info') {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-info text-blue-400"></i>`;
+            } else {
+                toastIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-400"></i>`;
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Initialize Store on DOM Load
+        window.onload = function() {
+            initStore();
+        };
+    </script>
+</body>
+</html>
