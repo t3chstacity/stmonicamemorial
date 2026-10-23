@@ -1,0 +1,394 @@
+<style>
+    .portal-wrapper {
+        font-family: 'Arial', sans-serif;
+        max-width: 750px;
+        margin: 10px auto;
+        color: #222222;
+        padding: 5px;
+    }
+    .search-box-card {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-align: center;
+        margin-bottom: 20px;
+        border-top: 4px solid #800000;
+    }
+    .search-form {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .search-input {
+        padding: 10px 15px;
+        font-size: 1rem;
+        border: 2px solid #bdc3c7;
+        border-radius: 4px;
+        width: 50%;
+        outline: none;
+    }
+    .search-btn {
+        padding: 10px 20px;
+        background: #800000;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .error-msg {
+        color: #e74c3c;
+        margin-top: 12px;
+        font-weight: bold;
+        display: none;
+    }
+    .transcript-container {
+        background: #ffffff;
+        padding: 20px;
+        border: 2px solid #333;
+        border-radius: 4px;
+        display: none;
+    }
+    .school-header {
+        text-align: center;
+        border-bottom: 2px double #333;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+    .school-header h1 {
+        margin: 0;
+        font-size: 1.6rem;
+        color: #800000;
+        letter-spacing: 1px;
+    }
+    .school-contact {
+        font-size: 0.85rem;
+        margin: 5px 0;
+        line-height: 1.4;
+    }
+    .transcript-title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1rem;
+        margin: 15px 0;
+        text-transform: uppercase;
+        text-decoration: underline;
+        line-height: 1.4;
+    }
+    
+    /* Layout Grid - Responsive */
+    .meta-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+    }
+    .meta-line {
+        margin-bottom: 5px;
+    }
+    .summary-row {
+        display: flex;
+        justify-content: space-around;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .summary-item div {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #800000;
+    }
+    .summary-item span {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #555;
+    }
+
+    /* CRITICAL MOBILE SCROLL WRAPPER */
+    .table-responsive-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 25px;
+        border: 1px solid #333;
+    }
+    .results-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+        min-width: 600px; /* Forces table layout to stay clean, not squished */
+    }
+    .results-table th, .results-table td {
+        border: 1px solid #333;
+        padding: 8px 10px;
+        text-align: left;
+        white-space: nowrap; /* Prevents text from breaking into vertical letters */
+    }
+    .results-table th {
+        background-color: #f2f2f2;
+        text-transform: uppercase;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .remarks-section {
+        margin-top: 20px;
+        border-top: 1px dashed #333;
+        padding-top: 15px;
+    }
+    .remark-block {
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    .remark-title {
+        font-weight: bold;
+        text-decoration: underline;
+        color: #333;
+        margin-bottom: 3px;
+    }
+    .signature-space {
+        margin-top: 5px;
+        font-style: italic;
+        color: #777;
+    }
+
+    /* MOBILE SCREENS STYLING FIXES */
+    @media screen and (max-width: 600px) {
+        .search-form {
+            flex-direction: column;
+            gap: 8px;
+        }
+        .search-input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .search-btn {
+            width: 100%;
+        }
+        .meta-grid {
+            grid-template-columns: 1fr; /* Stacks data into one column on small phones */
+            gap: 5px;
+        }
+        .transcript-container {
+            padding: 12px;
+        }
+        .school-header h1 {
+            font-size: 1.3rem;
+        }
+    }
+</style>
+
+<div class="portal-wrapper">
+    
+    <div class="search-box-card">
+        <h3>St. Monica Memorial School Portal</h3>
+        <p style="color: #666; margin: 0; font-size: 0.9rem;">Enter your child's Index Number or Student Name to view Exam Results.</p>
+        <div class="search-form">
+            <input type="text" id="txt-search-id" class="search-input" placeholder="e.g., 001 or Patrick" />
+            <button type="button" id="btn-submit-search" class="search-btn">View Results</button>
+        </div>
+        <div id="error-box" class="error-msg">No records found matching that search term. Kindly try again.</div>
+    </div>
+    
+    <div id="transcript" class="transcript-container">
+        
+        <div class="school-header">
+            <h1>ST. MONICA MEMORIAL SCHOOL</h1>
+            <div class="school-contact">
+                P.O BOX 0001 KIAMBU, KENYA<br />
+                0712674992<br />
+                stmonicamemorialschool@gmail.com
+            </div>
+        </div>
+        
+        <div class="transcript-title" id="lbl-transcript-title">EXAM RESULTS FOR - -</div>
+        
+        <div class="meta-grid">
+            <div>
+                <div class="meta-line"><strong>Name:</strong> <span id="lbl-name">-</span></div>
+                <div class="meta-line"><strong>INDEX NO:</strong> <span id="lbl-adm">-</span></div>
+            </div>
+            <div>
+                <div class="meta-line"><strong>Class:</strong> <span id="lbl-class">-</span></div>
+                <div class="meta-line"><strong>Current Class:</strong> <span id="lbl-curr-class">-</span></div>
+            </div>
+        </div>
+        
+        <div class="summary-row">
+            <div class="summary-item">
+                <div id="lbl-mean">-</div>
+                <span>Mean / Grade</span>
+            </div>
+            <div class="summary-item">
+                <div id="lbl-total-marks">-</div>
+                <span>Total Marks</span>
+            </div>
+        </div>
+
+        <div class="table-responsive-container">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Subjects</th>
+                        <th class="text-center">Marks</th>
+                        <th class="text-center">%</th>
+                        <th class="text-center">Grade</th>
+                        <th>Dev. Comment</th>
+                        <th>Teacher</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="remarks-section">
+            <div class="remark-block">
+                <div class="remark-title">Class Teacher Remarks & Signature</div>
+                <div id="lbl-teacher-remark">-</div>
+                <div class="signature-space">Class Teacher Assigned Signature: Verified ✓</div>
+            </div>
+            <div class="remark-block">
+                <div class="remark-title">Headteacher Remarks & Signature</div>
+                <div id="lbl-head-remark">-</div>
+                <div class="signature-space">Headteacher Approved Stamp/Signature: Verified ✓</div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+<script>
+    // Student list database
+    var STUDENT_DATABASE = {
+        "001": {
+            name: "PATRICK MUNIU",
+            class: "PP1 Tulip",
+            current_class: "PP1 Tulip",
+            term_title: "PP1 - End Term 1 - (2026/Term 1)",
+            mean: "EE | 87%",
+            total_marks: "606/700",
+            results: [
+                { subject: "LANGUAGE ACTIVITIES", marks: "23 / 25", percent: "92", grade: "EE", comment: "_", teacher: "Mwalimu Monicah" },
+                { subject: "MATHEMATICS", marks: "25 / 25", percent: "100", grade: "EE", comment: "_", teacher: "Mrs. Monicah" },
+                { subject: "CREATIVE ARTS", marks: "21 / 25", percent: "84", grade: "EE", comment: "_", teacher: "Mr. Monicah" },
+                { subject: "ENVIRONMENTAL ACTIVITIES", marks: "22 / 25", percent: "88", grade: "EE", comment: "_", teacher: "Mwalimu Monicah" },
+                { subject: "RELIGIOUS ACTIVITIES", marks: "23 / 25", percent: "92", grade: "EE", comment: "_", teacher: "Mrs. Monicah" },
+                { subject: "READING", marks: "25 / 25", percent: "100", grade: "EE", comment: "_", teacher: "Mr. Monicah" },
+                { subject: "LISTENING AND SPEAKING", marks: "4 / 8", percent: "50", grade: "AE", comment: "_", teacher: "Mrs. Monicah" }
+            ],
+            teacher_remark: "Patrick demonstrates excellent understanding of concepts and completes tasks with accuracy and confidence.",
+            head_remark: "Patrick applies knowledge confidently and achieves excellent outcomes."
+        },
+        "002": {
+            name: "GEORGE WAINAINA",
+            class: "PP1 Tulip",
+            current_class: "PP1 Tulip",
+            term_title: "PP1 - End Term 1 - (2026/Term 1)",
+            mean: "EE | 91%",
+            total_marks: "637/700",
+            results: [
+                { subject: "LANGUAGE ACTIVITIES", marks: "24 / 25", percent: "96", grade: "EE", comment: "_", teacher: "Mrs. Monicah" },
+                { subject: "MATHEMATICS", marks: "25 / 25", percent: "100", grade: "EE", comment: "_", teacher: "Mr. Monicah" },
+                { subject: "CREATIVE ARTS", marks: "22 / 25", percent: "88", grade: "EE", comment: "_", teacher: "Mwalimu Monicah" },
+                { subject: "ENVIRONMENTAL ACTIVITIES", marks: "23 / 25", percent: "92", grade: "EE", comment: "_", teacher: "Mrs. Monicah" },
+                { subject: "RELIGIOUS ACTIVITIES", marks: "24 / 25", percent: "96", grade: "EE", comment: "_", teacher: "Mr. Monicah" },
+                { subject: "READING", marks: "25 / 25", percent: "100", grade: "EE", comment: "_", teacher: "Mwalimu Monicah" },
+                { subject: "LISTENING AND SPEAKING", marks: "6 / 8", percent: "75", grade: "EE", comment: "_", teacher: "Mwalimu Monicah" }
+            ],
+            teacher_remark: "George is an attentive learner who shows steady growth in all structured classroom activities.",
+            head_remark: "Superb achievement. Keep up the high standard maintained throughout the term."
+        },
+        "003": {
+            name: "REGINAH MBUGUA",
+            class: "PP1 Tulip",
+            current_class: "PP1 Tulip",
+            term_title: "PP1 - End Term 1 - (2026/Term 1)",
+            mean: "ME | 78%",
+            total_marks: "546/700",
+            results: [
+                { subject: "LANGUAGE ACTIVITIES", marks: "21 / 25", percent: "84", grade: "EE", comment: "_", teacher: "Mr. Monicah" },
+                { subject: "MATHEMATICS", marks: "22 / 25", percent: "88", grade: "EE", comment: "_", teacher: "Mwalimu Monicah" },
+                { subject: "CREATIVE ARTS", marks: "18 / 25", percent: "72", grade: "ME", comment: "_", teacher: "Mrs. Monicah" },
+                { subject: "ENVIRONMENTAL ACTIVITIES", marks: "20 / 25", percent: "80", grade: "EE", comment: "_", teacher: "Mr. Monicah" },
+                { subject: "RELIGIOUS ACTIVITIES", marks: "21 / 25", percent: "84", grade: "EE", comment: "_", teacher: "Mwalimu Monicah" },
+                { subject: "READING", marks: "20 / 25", percent: "80", grade: "EE", comment: "_", teacher: "Mrs. Monicah" },
+                { subject: "LISTENING AND SPEAKING", marks: "5 / 8", percent: "62", grade: "ME", comment: "_", teacher: "Mwalimu Monicah" }
+            ],
+            teacher_remark: "Reginah is very disciplined and participates actively during lessons.",
+            head_remark: "A good performance. Maintain this effort for even better results next term."
+        }
+    };
+
+    // Search activation engine logic
+    document.getElementById('btn-submit-search').addEventListener('click', function() {
+        var rawInput = document.getElementById('txt-search-id').value;
+        var searchKey = rawInput.trim().toUpperCase();
+        var errorBox = document.getElementById('error-box');
+        var transcript = document.getElementById('transcript');
+        
+        var targetStudent = null;
+        var finalIndex = "";
+        
+        if (STUDENT_DATABASE.hasOwnProperty(searchKey)) {
+            targetStudent = STUDENT_DATABASE[searchKey];
+            finalIndex = searchKey;
+        } else {
+            for (var index in STUDENT_DATABASE) {
+                if (STUDENT_DATABASE.hasOwnProperty(index)) {
+                    var studentName = STUDENT_DATABASE[index].name.toUpperCase();
+                    if (studentName.indexOf(searchKey) !== -1 && searchKey !== "") {
+                        targetStudent = STUDENT_DATABASE[index];
+                        finalIndex = index;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if (targetStudent) {
+            errorBox.style.display = 'none';
+            
+            document.getElementById('lbl-transcript-title').innerText = "EXAM RESULTS FOR - " + targetStudent.term_title;
+            document.getElementById('lbl-name').innerText = targetStudent.name;
+            document.getElementById('lbl-adm').innerText = finalIndex;
+            document.getElementById('lbl-class').innerText = targetStudent.class;
+            document.getElementById('lbl-curr-class').innerText = targetStudent.current_class;
+            
+            document.getElementById('lbl-mean').innerText = targetStudent.mean;
+            document.getElementById('lbl-total-marks').innerText = targetStudent.total_marks;
+            
+            var tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+            
+            for (var i = 0; i < targetStudent.results.length; i++) {
+                var item = targetStudent.results[i];
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td><strong>' + item.subject + '</strong></td>' +
+                               '<td class="text-center">' + item.marks + '</td>' +
+                               '<td class="text-center">' + item.percent + '%</td>' +
+                               '<td class="text-center"><strong>' + item.grade + '</strong></td>' +
+                               '<td>' + item.comment + '</td>' +
+                               '<td>' + item.teacher + '</td>';
+                tbody.appendChild(tr);
+            }
+            
+            document.getElementById('lbl-teacher-remark').innerText = targetStudent.teacher_remark;
+            document.getElementById('lbl-head-remark').innerText = targetStudent.head_remark;
+            
+            transcript.style.display = 'block';
+        } else {
+            transcript.style.display = 'none';
+            errorBox.style.display = 'block';
+        }
+    });
+</script>
