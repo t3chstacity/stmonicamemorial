@@ -176,28 +176,258 @@
         </div>
     </header>
 
-   <!-- Main Responsive Layout Wrapper -->
+   <!-- Main Adverts Wrapper -->
     <!-- On mobile (default): Flex/stacked column. On large screens (lg+): 12-column grid layout where main takes 9 cols and sidebar takes 3 cols -->
     <div class="flex-grow max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         
-        <!-- Left/Center Main Website Content (Spans 9 columns on lg screens, full width on mobile) -->
+       <!-- Left/Center Main Website Content (Spans 12 columns on lg screens, full width on mobile) -->
         <main class="lg:col-span-12 w-full space-y-12">
             
-              <!-- Contact & Location Section -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900">Current Adverts</h2>
+            </div>
+
+           <!-- Adverts Section -->
             <section id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-                <!-- Advert Item 1 -->
+                
+                <!-- Advert Item 1 (Image) -->
                 <div class="gallery-item academics group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-                    <div class="relative h-64 overflow-hidden bg-slate-100 cursor-pointer" onclick="openLightbox(0)">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100 cursor-pointer" onclick="openLightbox(0)">
                         <img src="images/stmonica_banner.jpg" 
                             alt="Banner" 
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <h3 class="font-bold text-navy-900 text-lg mb-2 text-center">Admission in progress</h3>
-
-                
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">Admission in progress</h3>
+                    </div>
                 </div>
+                
+                <!-- Advert Item 2 (Video ID: 2) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-2" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(2)">
+                            <img src="images/video_thumbnail1.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-2" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">School Showcase</h3>
+                    </div>
+                </div>
+                
+                <!-- Advert Item 3 (Video ID: 3) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-3" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(3)">
+                            <img src="images/video_thumbnail2.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-3" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">Books Showcase</h3>
+                    </div>
+                </div>
+                
+                <!-- Advert Item 4 (Video ID: 4) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-4" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(4)">
+                            <img src="images/video_thumbnail3.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-4" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">Books Showcase</h3>
+                    </div>
+                </div>
+                
+                <!-- Advert Item 5 (Video ID: 5) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-5" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(5)">
+                            <img src="images/video_thumbnail4.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-5" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_4.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">Books Showcase</h3>
+                    </div>
+                </div>
+                
+                <!-- Advert Item 6 (Video ID: 6) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-6" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(6)">
+                            <img src="images/video_thumbnail5.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-6" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_5.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">Stationeries Showcase</h3>
+                    </div>
+                </div>
+               
+                
+                <!-- Advert Item 8 (Video ID: 8) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-8" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(8)">
+                            <img src="images/video_thumbnail7.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-8" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_7.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">Book Covers Showcase</h3>
+                    </div>
+                </div>
+                
+                <!-- Advert Item 9 (Video ID: 9) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-9" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(9)">
+                            <img src="images/video_thumbnail8.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-9" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_8.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center"> Stationery Delivery</h3>
+                    </div>
+                </div>
+                
+                <!-- Advert Item 10 (Video ID: 10) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-10" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(10)">
+                            <img src="images/video_thumbnail9.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-10" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_9.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center">2026 Admissions</h3>
+                    </div>
+                </div>
+                
+                <!-- Advert Item 11 (Video ID: 11) -->
+                <div class="gallery-item videos group relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative aspect-[3/4] overflow-hidden bg-slate-100">
+                        <div id="video-thumb-11" class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-500" onclick="playVideo(11)">
+                            <img src="images/video_thumbnail10.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+                                <div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-slate-900 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <video id="video-element-11" class="w-full h-full object-cover hidden" controls>
+                            <source src="adverts/advert_10.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-navy-900 text-lg text-center"> Welcome to St. Monica</h3>
+                    </div>
+                </div>
+
             </section>
+
+            <!-- Script for thumbnail display (Placed cleanly outside the grid loop) -->
+            <script>
+                function playVideo(id) {
+                    const thumb = document.getElementById(`video-thumb-${id}`);
+                    const video = document.getElementById(`video-element-${id}`);
+                    
+                    if (thumb && video) {
+                        // Hide the thumbnail overlay
+                        thumb.classList.add('hidden');
+                        
+                        // Reveal and play the video
+                        video.classList.remove('hidden');
+                        video.play();
+                    }
+                }
+            </script>
         </main>
 
     </div>
@@ -255,7 +485,7 @@
                     <ul class="space-y-3 text-xs text-slate-400">
                         <li class="flex items-start gap-2">
                             <i class="fas fa-map-marker-alt text-academicRed-500 mt-0.5"></i>
-                            <span>160 Stage, Mwihoko</span>
+                            <span>Mwihoko, Tumaini Avenue, 160</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fas fa-phone-alt text-academicRed-500"></i>
