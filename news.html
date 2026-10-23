@@ -134,9 +134,7 @@
 
                 <!-- CTA Action Button -->
                 <div class="hidden sm:flex items-center gap-3">
-                    <button onclick="openAdmissionModal()" class="gradient-red hover:bg-academicRed-700 text-white font-bold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-red-500/30 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
-                        <i class="fas fa-paper-plane text-xs"></i> Book Admission
-                    </button>
+                   
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -148,25 +146,34 @@
 
         <!-- Mobile Menu Nav Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-3 shadow-lg">
-            <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Home</a>
+            <a href="index.html" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Home</a>
             
             <!-- Mobile About Us Section with Sub-links -->
             <div class="space-y-1">
                 <div class="px-3 py-2 rounded-md font-medium text-slate-700 flex items-center justify-between">
-                    <a href="#about" onclick="toggleMobileMenu()" class="hover:text-academicRed-600">About</a>
+                    About
                 </div>
                 <div class="pl-4 space-y-1 border-l-2 border-slate-100 ml-3">
-                    <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">About Us</a>
-                    <a href="#why-us" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Core Values</a>
+                    <a href="about.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">About Us</a>
+                    <a href="index.html#why-us" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Core Values</a>
                     <a href="vision.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Mission and Vision</a>
                     <a href="policies.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Policies</a>
                 </div>
             </div>
 
-            <a href="#programs" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Academics & Programs</a>
-            <a href="#reviews" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Parent Reviews</a>
-            <a href="#why-us" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Why Choose Us</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Contact & Map</a>
+            <a href="index.html#programs" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Academics & Programs</a>
+            <a href="index.html#reviews" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Parent Reviews</a>
+            <a href="index.html#why-us" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Why Choose Us</a>
+            <a href="contact.html" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-slate-50 hover:text-academicRed-600">Contact & Map</a>
+            <div class="space-y-1">
+                <div class="px-3 py-2 rounded-md font-medium text-slate-700 flex items-center justify-between">
+                    Gallery
+                </div>
+                <div class="pl-4 space-y-1 border-l-2 border-slate-100 ml-3">
+                    <a href="gallery.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Gallery</a>
+                    <a href="adverts.html" onclick="toggleMobileMenu()" class="block px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-academicRed-600">Adverts</a>
+                </div>
+            </div>
             <div class="pt-2 flex flex-col gap-2">
                 <button onclick="openAdmissionModal(); toggleMobileMenu();" class="w-full gradient-red text-white font-bold py-3 rounded-xl shadow text-center">
                     Book Admission Now
